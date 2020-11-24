@@ -1,0 +1,109 @@
+{% extends 'htmls/main.html' %}
+{% block content %}
+<head>
+    <style>
+        .bar{
+            text-align: center;
+            background-color: darkcyan ;
+            border-radius: 10px;
+            color: beige;
+        }
+        .submit_button{
+            height: 30px;
+			width: 100px;
+			background: -webkit-linear-gradient(left,  #1b0b49, #b43616);
+			border: none;
+			color: #fff;
+			padding-left: 0;
+			border-radius: 5px;
+			font-size: 18px;
+			font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+        .submit_button:hover{
+            background-color: rgb(94, 66, 121);
+			text-decoration: none;
+			background: -webkit-linear-gradient(right,   #1b0b49, #b43616);
+			color: aquamarine;
+		}
+
+          @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+        table{
+            margin: auto;
+            border-collapse: collapse;
+            border-spacing: 0;
+            box-shadow: 0 2px 15px rgba(64,64,64,.7);
+            border-radius: 12px 12px 0 0;
+            position: relative;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        td , th{
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        th{
+            background-color: rgb(131, 5, 37);
+            color: #fafafa;
+            font-family: 'Open Sans',Sans-serif;
+            font-weight: 200;
+            text-transform: uppercase;
+        }
+
+        tr{
+            width: 100%;
+            background-color: #fafafa;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        tr:nth-child(even){
+            background-color: #eeeeee;
+        }
+
+        tr:last-of-type {
+            border-bottom: 5px solid rgb(131, 5, 37);
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align: center;">Reputed Hospitals</h2>
+
+    <div class="bar">
+        <form method="GET">
+            {{myFilter.form}}
+            <button class="submit_button" type="submit">Filter</button>
+        </form>
+    </div>
+      
+    <table >
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>Website</th>
+        </tr>
+        {% for i in hospital_list %}
+        <tr>
+            <td>{{ i.hid }}</td>
+            <td>{{ i.hname }}</td>
+            <td>{{ i.htype }}</td>
+            <td>{{ i.haddress }}</td>
+            <td>{{ i.hcontact }}</td>
+            <td>{{ i.hweb }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+{% endblock %}

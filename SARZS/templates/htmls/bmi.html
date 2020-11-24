@@ -1,0 +1,111 @@
+{% extends 'htmls/main.html' %}
+{% block content %}
+<head>
+    <style>
+        .form_class{
+			width: 390px;
+			margin: auto;
+			padding: 20px;
+			text-align: center;
+			background: -webkit-linear-gradient(left, #430b5e, #c96663);
+			margin-top: 20px;
+			box-shadow: 0 2px 15px rgba(64,64,64,.7);
+			border-radius: 10px;
+		}
+		.field{
+			height: 45px;
+			margin-bottom: 20px;
+			width: 330px;
+			margin: auto;
+			margin-top: 15px;
+			margin-bottom: 25px;	
+		}
+		
+		.field input{
+			height: 100%;
+			width: 80%;
+			border-radius: 5px;
+  			border: 2px solid rgb(238, 221, 71);
+			border-bottom-width: 2px;
+			font-size: 17px;
+			float: left;				
+		}
+		.field input:focus{
+			border-color: #fc83bb;	
+        }
+        
+        .field label{
+            background: green;
+            width: 17%;
+            height: 100%;
+            border-radius: 5px;
+            padding-top: 10px;
+            color: white;
+            font-size: 17px;
+        }
+
+		h2{
+			color: white;
+			font-weight: bold;
+			font-family: Georgia, serif;
+			padding: 20px;
+		}
+
+		  .bmi_button{
+            height: 45px;
+			width: 200px;
+			background: -webkit-linear-gradient(left, #8cb245, #3827cf);
+			border: none;
+			color: #fff;
+			padding-left: 0;
+			border-radius: 5px;
+			font-size: 25px;
+			font-weight: 500;
+			cursor: pointer;
+			padding-bottom: 3px;
+			font-weight: bold;
+        }
+        .bmi_button:hover{
+            background-color: rgb(94, 66, 121);
+			text-decoration: none;
+			background: -webkit-linear-gradient(right,  #8cb245, #3827cf);
+			color: aquamarine;
+		}
+		
+        
+    </style>
+</head>
+
+<body>
+    <div class="form_class">
+        <h2>BMI</h2>
+        
+        <form action="{% url 'BMI' %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="field">
+            <input type="text" name="height" placeholder="Enter Your Heght" required>
+            <label >Inch</label>
+            </div>
+
+            <div class="field">
+            <input type="text" name="weight" placeholder="Enter your weight" required>
+            <label>Kg</label><br><br>
+            </div>
+
+            <button class="bmi_button" type="submit">Calculate</button>
+        </form>
+        </div>
+
+        <div>
+            {% if bmi_comment != '' %}
+            <br>
+                <h3>{{bmi_result}} kg/m2</h3>
+                <h3>Comment: {{bmi_comment}}</h3>
+                <a class="bmi_button" href="{% url 'BMI' %}">Refresh</a>
+            {% endif %}
+        </div>
+   
+</body>
+
+{% endblock %}

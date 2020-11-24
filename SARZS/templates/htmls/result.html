@@ -1,0 +1,122 @@
+{% extends 'htmls/main.html' %}
+
+{% block content %}
+<head>
+    <style>
+
+        td,th{
+            text-align: center;
+        }
+        
+        h4{
+            display: inline-block;
+        }
+        
+        .imp{
+            color: blue;
+        }
+
+        .registered-user{
+            font-size: 18px;
+            color:  white ;
+            background-color: blueviolet;
+            margin-right: 20px;           
+            padding-top: 2px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+          }
+          .registered-user:hover{
+            color: white  ;
+            background-color: #4daf43 ;
+            text-decoration: none;
+          }
+
+          @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+        table{
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            border-spacing: 0;
+            box-shadow: 0 2px 15px rgba(64,64,64,.7);
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        td , th{
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        th{
+            background-color: #ba68c8;
+            color: #fafafa;
+            font-family: 'Open Sans',Sans-serif;
+            font-weight: 200;
+            text-transform: uppercase;
+        }
+
+        tr{
+            width: 100%;
+            background-color: #fafafa;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        tr:nth-child(even){
+            background-color: #eeeeee;
+        }
+
+        tr:last-of-type {
+            border-bottom: 5px solid #ba68c8;
+        }
+
+    </style>
+</head>
+<body>
+<br>
+    <h4 class="imp">Result: </h4>
+    <h4>{{ comment }}</h4>
+        <br>
+    
+    {% if disease_name != '' %}
+    <h4  class="imp">Disease name: </h4>
+    <h4>{{ disease_name }}</h4>
+    <br>
+    {% endif %}
+    
+
+    <h4  class="imp">Suggested Doctor: </h4>
+    <h4>{{row.tdoctor}}</h4>
+    
+    <br><br>
+    <table>
+        <tr>
+            <th>Test name</th>
+            <th>Normal level</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td > {{ row.Test_Name }} </td>
+            <td > {{ row.treference }} </td>
+            <td > {{ row.tdescription }} </td>
+        </tr>
+    </table>
+
+    {% if suggetions != '' %}
+        <br>
+        <h4  class="imp">Advices</h4>
+        <h5>{{ suggetions }}</h5>
+    {% endif %}
+
+    <div>
+        <br>
+        <a class='registered-user' href="{% url 'doctor' %}">Get Expert {{row.tdoctor}} list</a>
+        <br><br>
+        <a class='registered-user' href="{% url 'save_record' %}">Save This Result</a>
+    </div>
+
+</body>
+
+{% endblock %}

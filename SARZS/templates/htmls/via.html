@@ -1,0 +1,71 @@
+{% extends 'htmls/main.html' %}
+
+{% block content %}
+
+<head>
+    <style>
+        .via{
+            text-align: center;
+        }
+
+        .log{
+            font-size: 18px;
+            color:  #68e75b ;
+            font-weight: bold;
+            padding-top: 2px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+            background-color: black;
+          }
+        
+          .log:hover{
+            color:   white  ;
+            background-color: #43943a ;
+            text-decoration: none;
+          }
+          .reg{
+            font-size: 18px;
+            color:  rgb(86, 174, 233) ;
+            font-weight: bold;
+            padding-top: 2px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+            background-color: black;
+          }
+        
+          .reg:hover{
+            color:   white  ;
+            background-color: rgb(78, 146, 192) ;
+            text-decoration: none;
+          }
+
+    </style>
+</head>
+
+<div class="via">
+<h2>This is only for registered users</h2><br>
+<h4>If you have an account already, Click login</h4>
+<form action="{% url 'via_login' %}" method="post">
+    {% csrf_token %}
+    {% if request.GET.next %}
+    <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {%  endif %}
+
+    <button class="log" type="submit" value="login">Login</button>
+</form>
+
+<h4>If you do not have an account, Click register</h4>
+
+<form action="{% url 'via_register' %}" method="post">
+    {% csrf_token %}
+    {% if request.GET.next %}
+    <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {%  endif %}
+    <button class="reg" type="submit" value="Register">Register</button>
+</form>
+</div>
+{% endblock %}
