@@ -82,7 +82,7 @@
     
     {% if disease_name != '' %}
     <h4  class="imp">Disease name: </h4>
-    <h4>{{ disease_name }}</h4>
+    <h4>You might have {{ disease_name }}</h4>
     <br>
     {% endif %}
     
@@ -95,7 +95,7 @@
         <tr>
             <th>Test name</th>
             <th>Normal level</th>
-            <th>Description</th>
+            <th style="width: 65%;">Description</th>
         </tr>
         <tr>
             <td > {{ row.Test_Name }} </td>

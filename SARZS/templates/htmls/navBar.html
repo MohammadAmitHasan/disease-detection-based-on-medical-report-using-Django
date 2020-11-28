@@ -1,309 +1,214 @@
 <!DOCTYPE html>
-<!-- Created By CodingNepal -->
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Responsive Sticky Navbar</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+      <style>
+            html, body {
+                  margin: 0;
+                  padding: 0;
+                  width: 100%;
+            }
 
-nav{
-  background: #000657;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  height: 55px;
-  padding: 0;
-  margin: 0;
-  outline: none;
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-}
+            header {
+                  width: 100%;
+                  height: 10vh; 
+            }
 
-.cancel-icon, .menu-icon
-  {
-    position: absolute;
-  }
+            .logo {
+                  line-height: 60px;
+                  position: fixed;
+                  float: left;
+                  margin: -2px 2px; 
+            }
 
-nav .nav-items{
-  display: flex;
-  flex: 1;
-  padding: 0px;
-}
-nav .nav-items li{
-  list-style: none;
-  padding: 0 8px;
-}
-nav .nav-items li a{
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  text-decoration: none;
-  line-height: 55px;
-  padding: 5px 8px;
-}
-nav .nav-items li a:hover{
-  color: cyan;
-  border-radius: 5px;
-  box-shadow:  0 0 10px #33ffff,
-               0 0 15px #66ffff;
-}
+            .user{
+                  margin-top: 2px;
+                  float: right;
+                  font-size: 20px;
+                  font-family: Georgia, serif;
+            }
+            
+            nav {
+                  position: fixed;
+                  width: 100%;
+                  line-height: 60px;
+                  background:  rgb(9, 23, 100);
+            }
+            
+            nav ul {
+                  line-height: 60px;
+                  list-style: none;
+                  background: rgba(0, 0, 0, 0);
+                  overflow: hidden;
+                  color: #fff;
+                  padding: 0;
+                  text-align: right;
+                  margin: 0;
+                  padding-right: 10px; 
+            }
+            
+            nav.black ul {
+                  background: rgb(9, 23, 100);
+            }
+            
+            nav ul li {
+                  display: inline-block;
+            }
+            
+            nav ul li a {
+                  font-family: Georgia, serif;
+                  font-size: 20px;
+                  text-decoration: none;
+                  color: white;
+                  padding: 10px 20px;;
+            }
+            nav ul li a:hover{
+                  text-decoration: none;
+                  color: cyan;
+                  border-radius: 5px;
+                  box-shadow:  0 0 10px #33ffff,
+                               0 0 15px #66ffff;
+            }
+            .log_in{
+                  font-family: Georgia, serif;
+                  font-size: 20px;
+                  text-decoration: none;
+                  color: rgb(79, 219, 24);
+                  padding: 10px 10px;;
+                  font-weight: bold;
+            }
+            .log_in:hover{
+                  text-decoration: none;
+                  color: rgb(79, 219, 24);
+                  border-radius: 5px;
+                  box-shadow:  0 0 10px #63ff33,
+                               0 0 15px #21e70f;
+            }
+            .log_out{
+                  font-family: Georgia, serif;
+                  font-size: 20px;
+                  text-decoration: none;
+                  color: rgb(255, 0, 0);
+                  padding: 10px 10px;;
+                  font-weight: bold;
+            }
+            .log_out:hover{
+                  text-decoration: none;
+                  color: rgb(255, 0, 0);
+                  border-radius: 5px;
+                  box-shadow:  0 0 10px #ff0000,
+                               0 0 15px #ff1f1f;
+            }
 
+            .menu-icon {
+                  line-height: 60px;
+                  width: 100%;
+                  background: rgb(9, 23, 100);
+                  text-align: right;
+                  box-sizing: border-box;
+                  padding: 0.5px 24px;
+                  cursor: pointer;
+                  color: #fff;
+                  display: none;
+            }
+            
+            @media(max-width: 960px) {
+            
+                  .logo {
+                        position: fixed;
+                        top: 0;
+                        margin-top: -2px;
+                  }
+            
+                  nav ul {
+                        max-height: 0px;
+                        background:  rgb(9, 23, 100);
+                  }
+            
+                  nav.black ul {
+                        background: rgb(9, 23, 100);
+                  }
+            
+                  .showing {
+                        max-height: 34em;
+                  }
+            
+                  nav ul li {
+                        box-sizing: border-box;
+                        width: 100%;
+                        padding: 15px;
+                        text-align: center;
+                  }
+            
+                  .menu-icon {
+                        display: block;
+                  }
+            
+            }
+            
+      </style>
+</head>
+<body>
+      <div class="wrapper">
+            <header>
 
-.log_in{
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  text-decoration: none;
-  line-height: 55px;
-  padding: 5px 8px;
-  margin-left: 33px;
-  margin-right: 15px;
-}
-.log_in:hover{
-  color: rgb(100, 243, 33);
-  border-radius: 5px;
-  text-decoration: none;
-  box-shadow:  0 0 15px #5dff1c,
-               0 0 20px #1eff00;
-}
+                  <nav>
 
-.log_out{
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  text-decoration: none;
-  line-height: 55px;
-  padding: 5px 8px;
-  margin-left: 20px;
-  margin-right: 15px;
-}
-.log_out:hover{
-  color: rgb(255, 0, 0);
-  border-radius: 5px;
-  text-decoration: none;
-  box-shadow:  0 0 15px red,
-               0 0 20px red;
-}
+                        <div class="menu-icon">
+                              <i class="fa fa-bars fa-2x"></i>
+                        </div>
+                        
+                        {% load static %}
 
-nav .menu-icon,
-nav .cancel-icon{
-  width: 40px;
-  text-align: center;
-  margin: 0 50px;
-  font-size: 18px;
-  color: #fff;
-  cursor: pointer;
-  display: none;
-}
-nav .menu-icon span,
-nav .cancel-icon{
-  display: none;
-}
-@media (max-width: 1245px) {
-  nav{
-    padding: 0 50px;
-  }
-}
-@media (max-width: 1140px){
-  nav{
-    padding: 0px;
-  }
- 
-  nav .nav-items{
-    position: fixed;
-    z-index: 99;
-    top: 55px;
-    width: 100%;
-    left: -100%;
-    height: 100%;
-    padding: 10px 50px 0 50px;
-    text-align: center;
-    background: #14181f;
-    display: inline-block;
-    transition: left 0.3s ease;
-  }
-  nav .nav-items.active{
-    left: 0px;
-  }
-  nav .nav-items li{
-    line-height: 40px;
-    margin: 30px 0;
-  }
-  nav .nav-items li a{
-    font-size: 20px;
-  }
-  nav form{
-    position: absolute;
-    top: 60px;
-    right: 50px;
-    opacity: 0;
-    pointer-events: none;
-    transition: top 0.3s ease, opacity 0.1s ease;
-  }
-  nav form.active{
-    top: 95px;
-    opacity: 1;
-    pointer-events: auto;
-  }
-  nav form:before{
-    position: absolute;
-    content: "";
-    top: -13px;
-    right: 0px;
-    width: 0;
-    height: 0;
-    z-index: -1;
-    border: 10px solid transparent;
-    border-bottom-color: #1e232b;
-    margin: -20px 0 0;
-  }
-  nav form:after{
-    position: absolute;
-    content: '';
-    height: 60px;
-    padding: 2px;
-    background: #1e232b;
-    border-radius: 2px;
-    min-width: calc(100% + 20px);
-    z-index: -2;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  nav .menu-icon{
-    display: block;
-  }
-  nav .menu-icon span{
-    display: block;
-  }
-  nav .menu-icon span.hide
-  {
-    display: none;
-  }
-  nav .cancel-icon.show{
-    display: block;
-  }
-}
-.content{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
-.content header{
-  font-size: 30px;
-  font-weight: 700;
-}
-.content .text{
-  font-size: 30px;
-  font-weight: 700;
-}
-.space{
-  margin: 10px 0;
-}
+                        <div class="logo">
 
+                              <img class="nav_logo" height="55px" src="{% static 'images/logo5.png' %}">
+                              <div class="user">
+                                    {% if user.is_authenticated %}
+                                    <a class="log_out" href="{% url 'logout' %}">Logout</a>
+                                    {% else %}
+                                    <a class="log_in" href="{% url 'login' %}">Login</a>
+                                    {% endif %}
+                              </div>
 
-@media (max-width: 980px){
-  nav .menu-icon,
-  nav .cancel-icon
-  {
-    margin: 0 20px;
-  }
-  nav form{
-    right: 30px;
-  }
-}
-@media (max-width: 350px){
-  nav .menu-icon,
-  nav .cancel-icon,
-  nav .search-icon{
-    margin: 0 10px;
-    font-size: 16px;
-  }
-}
-.content{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.content header{
-  font-size: 30px;
-  font-weight: 700;
-}
-.content .text{
-  font-size: 30px;
-  font-weight: 700;
-}
-.content .space{
-  margin: 10px 0;
-}
+                        </div>
 
-.nav_logo{
-  margin-left: 50px;
-}
+                        <div class="menu">
+                              <ul>
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li><a href="{% url 'show' %}">Tests</a></li>
+                                    <li><a href="{% url 'hospital' %}">Hospitals</a></li>
+                                    <li><a href="{% url 'diagnostic_center' %}">Diagnostic_Centers</a></li>
+                                    {% if user.is_authenticated %}
+                                    <li><a href="{% url 'records' %}">Records</a></li>
+                                    {% endif %}
+                                    
+                              </ul>
+                        </div>
+                  </nav>
 
-    </style>
-  </head>
-  <body>
-    {% load static %}
-    
-     
-    <nav>
-      <div>
-        <img class="nav_logo" height="55px" src="{% static 'images/logo5.png' %}">
-      </div> 
+            </header>
 
-      <div class="menu-icon">
-        <span class="fas fa-bars"></span></div>
-        <div class="nav-items">
-        <li class="1st"><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'show' %}">Tests</a></li>
-        <li><a href="{% url 'hospital' %}">Hospitals</a></li>
-        <li><a href="{% url 'diagnostic_center' %}">Diagnostic_Centers</a></li>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'records' %}">Records</a></li>
-        {% endif %}
+            
       </div>
 
-      <div class="cancel-icon">
-        <span class="fas fa-times"></span>
-      </div>
+      <script type="text/javascript">
 
-      <div class="user">
-      {% if user.is_authenticated %}
-      <span ><a  class="log_out" href="{% url 'logout' %}">Logout</a></span>
-      {% else %}
-      <span ><a  class="log_in" href="{% url 'login' %}">Login</a></span>
-      {% endif %}
-      </div>
+      // Menu-toggle button
 
+      $(document).ready(function() {
+            
+            $(".menu-icon").on("click", function() {
+                  $("nav ul").toggleClass("showing");
+            });
+      });
 
-</nav>
-    
-<script>
-    const menuBtn = document.querySelector(".menu-icon span");
-    const cancelBtn = document.querySelector(".cancel-icon");
-    const items = document.querySelector(".nav-items");
-    const form = document.querySelector("form");
-    menuBtn.onclick = ()=>{
-      items.classList.add("active");
-      menuBtn.classList.add("hide");
-      cancelBtn.classList.add("show");
-    }
-    cancelBtn.onclick = ()=>{
-      items.classList.remove("active");
-      menuBtn.classList.remove("hide");
-      cancelBtn.classList.remove("show");
-      form.classList.remove("active");
-      cancelBtn.style.color = "#ff3d00";
-    }
-    
-  </script>
+      </script>
 
-  </body>
+</body>
 </html>

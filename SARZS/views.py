@@ -39,19 +39,19 @@ def result(request,id):
         return row.tdoctor
 
     if value < row.tmin:
-        comment = "Your " + row.Test_Name + " label is low"
-        record_comment = "Your " + row.Test_Name + " label was low"
+        comment = row.Test_Name + " label is low"
+        record_comment = row.Test_Name + " label was low"
         suggetions = row.tlow_advice
         disease_name = row.tlow_disease
 
     elif value > row.tmax:
-        comment = "Your " + row.Test_Name + " label is high"
-        record_comment = "Your " + row.Test_Name + " label was high"
+        comment = row.Test_Name + " label is high"
+        record_comment = row.Test_Name + " label was high"
         suggetions = row.thigh_advice
         disease_name = row.thigh_disease
     else:
-        comment = "Your " + row.Test_Name + " label is normal"
-        record_comment = "Your " + row.Test_Name + " label was normal"
+        comment = row.Test_Name + " label is normal"
+        record_comment = row.Test_Name + " label was normal"
 
     global Test_Name, tlevel, treference, rcomment
 
@@ -205,7 +205,7 @@ def save_record(request):
         Record.treference = treference()
         Record.rcomment = rcomment()
         Record.save()
-    return redirect('profile')
+    return redirect('records')
 
 @login_required(login_url='via')
 def records(request):

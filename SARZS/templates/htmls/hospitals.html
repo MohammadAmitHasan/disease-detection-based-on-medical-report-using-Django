@@ -37,7 +37,6 @@
             border-spacing: 0;
             box-shadow: 0 2px 15px rgba(64,64,64,.7);
             border-radius: 12px 12px 0 0;
-            position: relative;
             margin-top: 5px;
             overflow: hidden;
         }
@@ -94,12 +93,12 @@
         </tr>
         {% for i in hospital_list %}
         <tr>
-            <td>{{ i.hid }}</td>
-            <td>{{ i.hname }}</td>
-            <td>{{ i.htype }}</td>
-            <td>{{ i.haddress }}</td>
-            <td>{{ i.hcontact }}</td>
-            <td>{{ i.hweb }}</td>
+            <td>{{ i.Hid }}</td>
+            <td>{{ i.Name }}</td>
+            <td>{{ i.Type }}</td>
+            <td>{{ i.Address }}</td>
+            <td>{{ i.Contact }}</td>
+            <td><a href="{{ i.Website }}" target="_blank">Go to Website</a></td>
         </tr>
         {% endfor %}
     </table>

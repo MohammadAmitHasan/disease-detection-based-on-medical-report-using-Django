@@ -32,7 +32,6 @@
             border-spacing: 0;
             box-shadow: 0 2px 15px rgba(64,64,64,.7);
             border-radius: 12px 12px 0 0;
-            position: relative;
             margin-top: 5px;
             overflow: hidden;
         }
@@ -63,10 +62,31 @@
         tr:last-of-type {
             border-bottom: 5px solid rgb(131, 5, 37);
         }
+
+        .description{
+            background: rgba(0, 0, 0, 0.658);
+            border-radius: 5px;
+            color: white;
+            padding: 5px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 18px;
+          }
+          
     </style>
 </head>
 
 <body>
+
+    <div class="description">
+        <p>
+            You need to submit the value of the substance you want to check.
+            If the submitted substance level is not normal our website will give you the disease name that you might have with a short description of it.
+            We will suggest you the doctor's department that you should visit for getting proper treatment. 
+        </p>
+    </div>
+
+
     <br>
 <form action="result/{{ row.id }}" method="post">
     {% csrf_token %}
