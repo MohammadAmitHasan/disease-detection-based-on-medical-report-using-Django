@@ -38,6 +38,7 @@
                   width: 100%;
                   line-height: 60px;
                   background:  rgb(9, 23, 100);
+                  z-index: 2;
             }
             
             nav ul {
@@ -166,7 +167,6 @@
                         {% load static %}
 
                         <div class="logo">
-
                               <img class="nav_logo" height="55px" src="{% static 'images/logo5.png' %}">
                               <div class="user">
                                     {% if user.is_authenticated %}
@@ -175,9 +175,7 @@
                                     <a class="log_in" href="{% url 'login' %}">Login</a>
                                     {% endif %}
                               </div>
-
                         </div>
-
                         <div class="menu">
                               <ul>
                                     <li><a href="{% url 'home' %}">Home</a></li>
@@ -193,8 +191,6 @@
                   </nav>
 
             </header>
-
-            
       </div>
 
       <script type="text/javascript">
@@ -207,8 +203,7 @@
                   $("nav ul").toggleClass("showing");
             });
       });
-
+      
       </script>
-
 </body>
 </html>

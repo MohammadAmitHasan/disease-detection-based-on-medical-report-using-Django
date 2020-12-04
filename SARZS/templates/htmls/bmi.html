@@ -99,12 +99,17 @@
 		.result{
             text-align: center;
         }
+
+		#container{
+			height: 90vh;
+		}
         
     </style>
 </head>
 
 <body>
 
+	<div id="container">
 	<div class="description">
         <p>
             Calculate your Body Mass Index so that you can easily understand your current body fat situation.
@@ -138,7 +143,8 @@
                 <h3>Comment: {{bmi_comment}}</h3>
                 <a class="refresh" href="{% url 'BMI' %}">Refresh</a>
             {% endif %}
-        </div>
+		</div>
+	</div>
    
 </body>
 

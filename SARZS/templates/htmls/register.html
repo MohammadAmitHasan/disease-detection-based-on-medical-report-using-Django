@@ -29,14 +29,14 @@
 		}
 		.profile_icon{
 			background-color: rgb(238, 221, 71);
-			padding: 14px 17px;
+			padding: 10px 17px;
 			border-radius: 5px;
 			float: left;
 		}
 
 		.pass_icon{
 			background-color: rgb(238, 221, 71);
-			padding: 14px 16px;
+			padding: 10px 16px;
 			border-radius: 5px;
 			float: left;
 		}
@@ -90,6 +90,9 @@
 			color: rgb(0, 255, 34);
 			text-decoration: none;
 		}
+		#container{
+			height: 90vh;
+		}
 		
 	</style>
 	
@@ -97,6 +100,7 @@
 </head>
 
 <body>
+	<div id="container">
 	<div class="form_class">
 		<h2>Registration Form</h2>
 		
@@ -150,7 +154,7 @@
 		Already have an account? <a class="switch" href="{% url 'login' %}" >Login</a>
 
 	</div>
-	
+</div>
 	
 </body>
 

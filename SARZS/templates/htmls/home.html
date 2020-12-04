@@ -39,18 +39,17 @@
           }
           
           #content2 {
-            background: rgba(0, 0, 0, 0.658);
-            grid-area: content2;
+            position: static;
             border-radius: 7px;
             margin-top: 10px;
             color: white;
             font-size: 20px;
-            box-shadow: 0 5px 15px rgb(0, 0, 0);
             text-align: center;
             width: 100%;
-            padding-top: 15px;
-            padding-bottom: 10px;
+            height: 80vh;
+            
           }
+          
           #content2 a{
             color: cyan;
           }
@@ -59,11 +58,10 @@
             opacity: 0;
             animation: cycleImages 36s infinite;
             position: absolute;
-            margin: auto;
-            background-position: center;
             border-radius: 5px;
             width: 90%;
             margin-left: 25px;
+            
           }
 
           .slideshow_item:nth-child(1){
@@ -88,21 +86,24 @@
             animation-delay: 30s;
           }
 
-          .slideshow_item img{
-            margin-top: 15px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgb(0, 0, 0);
-          }
           .slideshow-item-text{
             background: rgba(0, 0, 0, 0.658);
-            width: 500px;
+            width: 58vw;
             border-radius: 5px;
             padding: 10px;
             margin-left: 14px;
             margin: auto;
-            margin-top: 2px;
-            box-shadow: 0 5px 15px rgb(0, 0, 0);
+            margin-top: 4px;
+            box-shadow: 0 5px 15px rgb(0, 0, 0); 
           }
+          .slideshow_item img{
+            border-radius: 5px;
+            box-shadow: 0 10px 15px rgb(0, 0, 0);
+            width: 58vw;
+            height: auto;
+            margin: auto;
+          }
+          
           
           @keyframes cycleImages{
             10%{
@@ -112,74 +113,67 @@
               opacity: 0;
             }
           }
-          
-
+         
     </style>
 
 </head>
 
-<body>
-  
     <div id="content1">
         <h2>Detect disease based on your medical report & Get expert doctors</h2>
     </div>
 
     <div id="content2">
-      <h4>
-        Features of our website
-      </h5>
-
         <div class="slideshow_item">
-          <img src="{% static 'images/2.jpg' %}" alt="Image 1">
           <div class="slideshow-item-text">
             <h5>Get best doctors</h5>
           </div>
+          <img src="{% static 'images/2.jpg' %}" alt="Doctor">
         </div>
 
         <div class="slideshow_item">
-          <img src="{% static 'images/3.jpg' %}" alt="Image 1">
           <div class="slideshow-item-text">
             <h5>Find out best Hospitals & diagnostic centers</h5>
           </div>
+          <img src="{% static 'images/3.jpg' %}" alt="Hospitals & Diagnostic Centers">
         </div>
 
         <div class="slideshow_item">
-          <img src="{% static 'images/8.jpg' %}" alt="Image 1">
           <div class="slideshow-item-text">
             <h5>Save time & money</h5>
           </div>
+          <img src="{% static 'images/8.jpg' %}" alt="Save time and money">
         </div>
 
         <div class="slideshow_item">
-          <img src="{% static 'images/5.jpg' %}" alt="Image 1">
           <div class="slideshow-item-text">
             <h5>Keep previous records</h5>
           </div>
+          <img src="{% static 'images/5.jpg' %}" alt="History">
         </div>
 
         <div class="slideshow_item">
-          <img src="{% static 'images/6.jpg' %}" alt="Image 1">
           <div class="slideshow-item-text">
             <h5>Know your current body fat situation</h5>
           </div>
+          <img src="{% static 'images/6.jpg' %}" alt="BMI">
         </div>
 
         <div class="slideshow_item">
-          <img src="{% static 'images/7.jpg' %}" alt="Image 1">
           <div class="slideshow-item-text">
             <h5>Standard growth information of children</h5>
           </div>
+          <img src="{% static 'images/7.jpg' %}" alt="Growth chart">
         </div>
 
         <div class="slideshow_item">
-          <img src="{% static 'images/1.jpg' %}" alt="Image 1">
           <div class="slideshow-item-text">
             <h5>Identify disease from anywhere</h5>
           </div>
+          <img src="{% static 'images/1.jpg' %}" alt="Disease detections">
         </div>
-      </div> 
-    
-
+      </div>
+      <body>
+        
 </body>
 
 {% endblock %}
