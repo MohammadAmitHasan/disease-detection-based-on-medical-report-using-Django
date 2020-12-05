@@ -13,6 +13,20 @@
             text-align: center;
             font-size: 18px;
           }
+          #chart img{
+              display: block;
+              margin-top: 10px;
+              margin-left: auto;
+              margin-right: auto;
+              border-radius: 7px;
+              box-shadow: 0 10px 15px rgb(0, 0, 0);
+          }
+          @media(max-width: 750px) {
+        
+            #chart img{
+                width: 90vw;
+            }
+        }
     </style>
 </head>
 
@@ -22,6 +36,11 @@
             Here you can get the standard growth chart of children. 
             That will help you to understand your children's growth rate is normal or they need special care.
         </p>
+    </div>
+
+    {% load static %}
+    <div id="chart">
+        <img src="{% static 'images/growth.jpg' %}" alt="Growth Chart">
     </div>
 
 </body>
