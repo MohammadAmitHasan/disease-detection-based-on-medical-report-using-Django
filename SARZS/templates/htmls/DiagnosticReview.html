@@ -1,0 +1,108 @@
+{% extends 'htmls/main.html' %}
+{% block content %}
+
+
+<head>
+    
+    <style>
+        body{
+            font-family: Helvetica, sans-serif;
+        }
+        #details{
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgb(0, 0, 0);
+        }
+        #details p img{
+            width: 200px;
+            float: right;
+        }
+        #ratings{
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: rgb(202, 219, 219);
+            box-shadow: 0 5px 15px rgb(0, 0, 0);
+        }
+        #comments{
+            margin-top: 10px;
+            padding: 5px;
+            padding-bottom: 10px;
+            border-radius: 5px;
+            background-color: rgb(202, 219, 219);
+            box-shadow: 0 5px 15px rgb(0, 0, 0);
+        }
+        #reviews{
+            margin-top: 10px;
+            padding: 5px;
+            padding-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgb(0, 0, 0);
+        }
+        #reviews h4{
+            margin-top: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <div id="details">
+        <p>
+            <img src="{{ diagnostic.photo.url }}" alt="">
+            <br>
+            <b>Name:</b>  {{diagnostic.Name}} <br>
+            <b>Type:</b> {{diagnostic.Type}} <br>
+            <b>Address:</b> {{diagnostic.Address}} <br>
+            <b>Contact:</b> {{diagnostic.Contact}} <br>
+            <b>Area:</b> {{diagnostic.Area}} <br>
+            <b>Website:</b> <a href="{{ diagnostic.Website }}" target="_blank">Go to Website</a> <br>
+            <b>Rating:</b> {{diagnostic.Rating}}/5 <br>
+            <b>Number Of Ratings:</b> {{diagnostic.numberOfRating}}
+        </p>
+    </div>
+
+<div id="review">
+
+    <div id="ratings">
+        <form action="{% url 'diagnosticRating' diagnostic.id %}" method="POST">
+            {% csrf_token %}
+            
+            <label for="rating">Give a Rating out of 5 </label><br>
+            <input type="range" name="rating" id="rangeInput" min="0" max="5" value="0" step="1"
+            oninput="amount.value=rangeInput.value">
+
+            <output name="amount" id="amount" for="rangeInput">0</output>
+            
+            <button type="submit">Rate</button>
+        </form>
+    </div>
+
+    <div id="comments">
+        <form action="{% url 'diagnosticComment' diagnostic.id %}" method="POST">
+            {% csrf_token %}
+            <textarea name="comment" cols="20" rows="1"></textarea>
+            <br>
+            <button type="submit">Comment</button>
+        </form>
+    </div>
+
+</div>
+
+<hr>
+<div id="reviews">
+    <h4>Comments</h4>
+    {% for i in row %}
+        <b>{{i.user}}</b>  {{i.date}}
+            <br>
+        {{i.comment}}
+        <hr>
+    {% endfor %}
+
+</div>
+
+</body>
+{% endblock %}

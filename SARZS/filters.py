@@ -6,23 +6,32 @@ class hospitalFilter(django_filters.FilterSet):
     Name = CharFilter(field_name='Name', lookup_expr='icontains')
     class Meta:
         model = hospitals
-        fields = '__all__'
-        exclude = ['Hid', 'Address', 'Contact', 'Website']
+        #fields = '__all__'
+        #exclude = ['Hid', 'Address', 'Contact', 'Website', 'Rating','TotalRating','numberOfRating','photo']
+        fields = ['Name', 'Type', 'Area']
 
 class diagnostic_centerFilter(django_filters.FilterSet):
     Name = CharFilter(field_name='Name', lookup_expr='icontains')
     class Meta:
         model = diagnostic_centers
-        exclude = ['Did', 'Address', 'Contact', 'Website']
-
+        fields = ['Name', 'Type', 'Area']
+        
 class testFilter(django_filters.FilterSet):
     Test_Name = CharFilter(field_name='Test_Name', lookup_expr='icontains')
     class Meta:
         model = test
-        exclude = ['tid', 'tmin', 'tmax', 'treference', 'tunit', 'tdoctor', 'tdescription', 'thigh_disease', 'tlow_disease', 'thigh_advice', 'tlow_advice']
+        fields = ['Test_Name']
 
 class doctorFilter(django_filters.FilterSet):
     Name = CharFilter(field_name='Name', lookup_expr='icontains')
     class Meta:
         model = doctor_list
-        exclude = ['DOCid', 'Designation', 'Qualification', 'tdoctor','Contact','Address', 'Rating', 'TotalRating','NumRating']
+        fields = ['Name', 'Department', 'Area']
+        
+
+class alldoctorFilter(django_filters.FilterSet):
+    Name = CharFilter(field_name='Name', lookup_expr='icontains')
+    Department = CharFilter(field_name='Department', lookup_expr='icontains')
+    class Meta:
+        model = doctor_list
+        fields = ['Name', 'Area']

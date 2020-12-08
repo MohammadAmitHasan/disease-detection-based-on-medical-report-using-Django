@@ -88,7 +88,7 @@
 
 
     <br>
-<form action="result/{{ row.id }}" method="post">
+<form action="{% url 'result' row.id %}" method="post">
     {% csrf_token %}
 <table>
     <tr>

@@ -98,7 +98,9 @@
             <td>{{ i.Type }}</td>
             <td>{{ i.Address }}</td>
             <td>{{ i.Contact }}</td>
-            <td><a href="{{ i.Website }}" target="_blank">Go to Website</a></td>
+            <td><a href="{{ i.Website }}" target="_blank">Go to Website</a>
+                <a href="{% url 'hospitalDetails' i.id %}">Rate & Comments</a>
+            </td>
         </tr>
         {% endfor %}
     </table>

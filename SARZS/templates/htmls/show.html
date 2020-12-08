@@ -142,7 +142,7 @@
             <td>{{ i.tid }}</td>
             <td >{{ i.Test_Name }}</td>
             <td>
-                <a class="button" href="check/{{ i.id }}">Check</a>
+                <a class="button" href="{% url 'check' i.id %}">Check</a>
             </td>
         </tr>
         {% endfor %}

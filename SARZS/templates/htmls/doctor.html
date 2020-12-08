@@ -99,10 +99,12 @@
     <td>{{i.Name}}</td>
     <td>{{i.Designation}}</td>
     <td>{{i.Qualification}}</td>
-    <td>{{i.tdoctor}}</td>
     <td>{{i.Address}}</td>
+    <td>{{i.Department}}</td>
     <td>{{i.Contact}}</td>
-    <td>{{i.Rating}}</td>
+    <td>{{i.Rating}}<br>
+        <a href="{% url 'doctorDetails' i.id %}">Rate & Comments</a>
+    </td>
     {% endfor %}
     </tr>
 </table>

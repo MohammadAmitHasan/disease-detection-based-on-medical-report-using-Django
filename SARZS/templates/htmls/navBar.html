@@ -118,7 +118,7 @@
                   display: none;
             }
             
-            @media(max-width: 960px) {
+            @media(max-width: 1120px) {
             
                   .logo {
                         position: fixed;
@@ -184,6 +184,7 @@
                                     <li><a href="{% url 'diagnostic_center' %}">Diagnostic_Centers</a></li>
                                     {% if user.is_authenticated %}
                                     <li><a href="{% url 'records' %}">Records</a></li>
+                                    <li><a href="{% url 'alldoctors' %}">Doctors</a></li>
                                     {% endif %}
                                     
                               </ul>

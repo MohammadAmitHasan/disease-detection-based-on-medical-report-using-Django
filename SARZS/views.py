@@ -66,11 +66,6 @@ def result(request,id):
 
     return render(request,'htmls/result.html', {'row': row,'comment': comment,'suggetions': suggetions, 'disease_name': disease_name})
 
-def searchT(request):
-    given_name = request.POST['name']
-    table_test = test.objects.filter(Test_Name__icontains=given_name)
-    return render(request, 'htmls/show.html', {'table_test': table_test, 'doctor': doctor})
-
 def registerPage(request):
     a=''
     form = CreateUserForm()
@@ -167,9 +162,20 @@ def growth(request):
 def doctor(request):
     #doctor_dept = request.session['result_doctor']
     doctor_dept = result_doctor()
-    special_doctor = doctor_list.objects.filter(tdoctor__icontains=doctor_dept)
+    special_doctor = doctor_list.objects.filter(Department__icontains=doctor_dept)
 
     myFilter = doctorFilter(request.GET, queryset=special_doctor)
+    special_doctor = myFilter.qs
+
+    return render(request, 'htmls/doctor.html', {'doctor_dept': doctor_dept, 'special_doctor': special_doctor, 'myFilter': myFilter})
+
+@login_required(login_url='via')
+def alldoctors(request):
+
+    doctor_dept = "Expert Doctors"
+    special_doctor = doctor_list.objects.all()
+
+    myFilter = alldoctorFilter(request.GET, queryset=special_doctor)
     special_doctor = myFilter.qs
 
     return render(request, 'htmls/doctor.html', {'doctor_dept': doctor_dept, 'special_doctor': special_doctor, 'myFilter': myFilter})
@@ -211,4 +217,101 @@ def save_record(request):
 def records(request):
     if request.user.is_authenticated:
         user_record = record.objects.filter(ruser=request.user)
-    return render(request, 'htmls/records.html',{'user_record': user_record})
+    return render(request, 'htmls/records.html', {'user_record': user_record})
+
+@login_required(login_url='via')
+def doctorDetails(request,id):
+
+    doctor = doctor_list.objects.get(id=id)
+    row = docReview.objects.filter(DOCid=doctor.DOCid).order_by("-date")
+
+    return render(request, 'htmls/doctorReview.html', {'row':row, 'doctor': doctor})
+
+@login_required(login_url='via')
+def doctorRating(request,id):
+    doctor = doctor_list.objects.get(id=id)
+    if request.method == 'POST':
+        ratings = float(request.POST['rating'])
+        doctor.totalRating = doctor.totalRating + ratings
+        doctor.numberOfRating += 1
+        doctor.rating = round((doctor.totalRating/doctor.numberOfRating),2)
+        print(doctor.rating)
+        doctor.save()
+    return redirect('doctorDetails',id)
+
+@login_required(login_url='via')
+def doctorComment(request,id):
+    doctor = doctor_list.objects.get(id=id)
+    comment_table = docReview()
+    if request.method == 'POST':
+        comments = request.POST['comment']
+        comment_table.DOCid = doctor.DOCid
+        comment_table.user = request.user
+        comment_table.comment = comments
+        comment_table.save()
+
+    return redirect('doctorDetails',id)
+
+@login_required(login_url='via')
+def hospitalDetails(request,id):
+
+    hospital = hospitals.objects.get(id=id)
+    row = hospitalReview.objects.filter(Hid=hospital.Hid).order_by("-date")
+
+    return render(request, 'htmls/HospitalReview.html', {'row':row, 'hospital': hospital})
+
+@login_required(login_url='via')
+def hospitalRating(request,id):
+    hospital = hospitals.objects.get(id=id)
+    if request.method == 'POST':
+        ratings = float(request.POST['rating'])
+        hospital.TotalRating = hospital.TotalRating + ratings
+        hospital.numberOfRating += 1
+        hospital.Rating = round((hospital.TotalRating/hospital.numberOfRating),2)
+        hospital.save()
+    return redirect('hospitalDetails',id)
+
+@login_required(login_url='via')
+def hospitalComment(request,id):
+    hospital = hospitals.objects.get(id=id)
+    comment_table = hospitalReview()
+    if request.method == 'POST':
+        comments = request.POST['comment']
+        comment_table.Hid = hospital.Hid
+        comment_table.user = request.user
+        comment_table.comment = comments
+        comment_table.save()
+
+    return redirect('hospitalDetails',id)
+
+@login_required(login_url='via')
+def diagnosticDetails(request,id):
+
+    diagnostic = diagnostic_centers.objects.get(id=id)
+    row = diagnosticReview.objects.filter(Did=diagnostic.Did).order_by("-date")
+
+    return render(request, 'htmls/DiagnosticReview.html', {'row':row, 'diagnostic': diagnostic})
+
+@login_required(login_url='via')
+def diagnosticRating(request,id):
+    diagnostic = diagnostic_centers.objects.get(id=id)
+    if request.method == 'POST':
+        ratings = float(request.POST['rating'])
+        diagnostic.TotalRating = diagnostic.TotalRating + ratings
+        diagnostic.numberOfRating += 1
+        diagnostic.Rating = round((diagnostic.TotalRating/diagnostic.numberOfRating),2)
+        diagnostic.save()
+    return redirect('diagnosticDetails',id)
+
+@login_required(login_url='via')
+def diagnosticComment(request,id):
+    diagnostic = diagnostic_centers.objects.get(id=id)
+    comment_table = diagnosticReview()
+    if request.method == 'POST':
+        comments = request.POST['comment']
+        comment_table.Did = diagnostic.Did
+        comment_table.user = request.user
+        comment_table.comment = comments
+        comment_table.save()
+
+    return redirect('diagnosticDetails',id)
