@@ -67,6 +67,14 @@
         tr:last-of-type {
             border-bottom: 5px solid rgb(131, 5, 37);
         }
+
+        #photo{
+            width: 200px;
+        }
+        #details{
+            text-align: left;
+        }
+
     </style>
 </head>
 
@@ -85,26 +93,29 @@
 
 <table>
     <tr>
+        <th>ID</th>
         <th>Name</th>
-        <th>Designation</th>
-        <th>Qualification</th>
-        <th>Department</th>
-        <th>Address</th>
-        <th>Contact</th>
-        <th>Ratings</th>
+        <th>Details</th>
+        <th>Photo</th>
     </tr>
 
     {% for i in special_doctor %}
     <tr>
-    <td>{{i.Name}}</td>
-    <td>{{i.Designation}}</td>
-    <td>{{i.Qualification}}</td>
-    <td>{{i.Address}}</td>
-    <td>{{i.Department}}</td>
-    <td>{{i.Contact}}</td>
-    <td>{{i.Rating}}<br>
-        <a href="{% url 'doctorDetails' i.id %}">Rate & Comments</a>
+    <td>{{i.DOCid}}</td>
+    <td><b>{{i.Name}}</b></td>
+    <td id="details">
+        <b>Designation: </b> {{i.Designation}} <br>
+        <b>Qualification: </b> {{i.Qualification}} <br>
+        <b>Department: </b> {{i.Department}} <br>
+        <b>Address</b> {{i.Address}} <br>
+        <b>Contact Number: </b> {{i.Contact}} <br>
+        <b>Rating:  {{i.rating}}/5 </b> ({{i.numberOfRating}} person rated)<br>
+        <a href="{% url 'doctorDetails' i.id %}"> <b>Rate & Comments</b> </a>
     </td>
+    <td>
+        <img id="photo" src="{{ i.photo.url }}" alt="">
+    </td>
+    
     {% endfor %}
     </tr>
 </table>

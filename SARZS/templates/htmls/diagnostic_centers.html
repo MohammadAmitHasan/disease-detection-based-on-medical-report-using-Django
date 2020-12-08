@@ -67,6 +67,12 @@
         tr:last-of-type {
             border-bottom: 5px solid rgb(131, 5, 37);
         }
+        #photo{
+            width: 200px;
+        }
+        #details{
+            text-align: left;
+        }
 
     </style>
 </head>
@@ -85,20 +91,24 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Type</th>
-            <th>Address</th>
-            <th>Contact</th>
-            <th>Website</th>
+            <th>Details</th>
+            <th>Photo</th>
         </tr>
         {% for i in diagnostic_list %}
         <tr>
             <td>{{ i.Did }}</td>
-            <td>{{ i.Name }}</td>
-            <td>{{ i.Type }}</td>
-            <td>{{ i.Address }}</td>
-            <td>{{ i.Contact }}</td>
-            <td><a href="{{ i.Website }}" target="_blank">Go to website</a>
-                <a href="{% url 'diagnosticDetails' i.id %}">Rate & Comments</a>
+            <td><b>{{ i.Name }}</b></td>
+            <td id="details">
+                <b>Area: </b>{{i.Area}} <br>
+                <b>Type: </b>{{ i.Type }} <br>
+                <b>Address: </b> {{ i.Address }} <br>
+                <b>Contact Number: </b> {{ i.Contact }} <br>
+                <b>Website: </b> <a href="{{ i.Website }}" target="_blank">Go to {{ i.Name }}'s Website</a> <br>
+                <b>Rating:  {{i.Rating}}/5 </b> ({{i.numberOfRating}} person rated)<br>
+                <a href="{% url 'diagnosticDetails' i.id %}"> <b>Rate & Comments</b> </a>
+            </td>
+            <td>
+                <img id="photo" src="{{ i_hbe.photo.url }}" alt="Hospital Photo">
             </td>
         </tr>
         {% endfor %}
