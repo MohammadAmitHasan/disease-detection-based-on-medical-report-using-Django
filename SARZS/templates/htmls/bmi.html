@@ -3,8 +3,8 @@
 <head>
     <style>
         .form_class{
-			width: 390px;
 			margin: auto;
+			width: 390px;
 			padding: 20px;
 			text-align: center;
 			background: -webkit-linear-gradient(left, #430b5e, #c96663);
@@ -48,7 +48,7 @@
 			color: white;
 			font-weight: bold;
 			font-family: Georgia, serif;
-			padding: 20px;
+			padding: 0px;
 		}
 
 		  .bmi_button{
@@ -80,6 +80,7 @@
 			cursor: pointer;
 			padding: 2px 15px 5px;
 			font-weight: bold;
+			text-align: center;
         }
         .refresh:hover{
             background-color: rgb(94, 66, 121);
@@ -96,13 +97,26 @@
             text-align: center;
             font-size: 18px;
           }
+		
 		.result{
-            text-align: center;
-        }
-
-		#container{
-			height: 90vh;
+			margin: auto;
+			text-align: center;
 		}
+		.result img{
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 20px;
+			width: 390px;
+			border-radius: 7px;
+		}
+		.title{
+            background: rgb(18, 53, 58);
+            color: white;
+            padding: 7px 10px 2px;
+            margin-bottom: 10px;
+            font-family: Georgia, serif;
+			text-align: center;
+        }
         
     </style>
 </head>
@@ -110,42 +124,52 @@
 <body>
 
 	<div id="container">
+		<div class="title">
+			<h2>BMI</h2>
+		</div>
+
 	<div class="description">
         <p>
             Calculate your Body Mass Index so that you can easily understand your current body fat situation.
         </p>
-    </div>
+    </div>	
 
-    <div class="form_class">
-        <h2>BMI</h2>
-        
-        <form action="{% url 'BMI' %}" method="POST">
-            {% csrf_token %}
-            
-            <div class="field">
-            <input type="text" name="height" placeholder="Enter Your Heght" required>
-            <label>Inch</label>
-            </div>
+	<div class="form_class">
+		
+			
+		<form action="{% url 'BMI' %}" method="POST">
+			{% csrf_token %}
+				
+			<div class="field">
+			<input type="text" name="height" placeholder="Enter Your Heght" required>
+			<label>Inch</label>
+			</div>
 
-            <div class="field">
-            <input type="text" name="weight" placeholder="Enter your weight" required>
-            <label>Kg</label><br><br>
-            </div>
+			<div class="field">
+			<input type="text" name="weight" placeholder="Enter your weight" required>
+			<label>Kg</label><br><br>
+			</div>
 
-            <button class="bmi_button" type="submit">Calculate</button>
-        </form>
-        </div>
-
-        <div class="result">
-            {% if bmi_comment != '' %}
-            <br>
-                <h3>{{bmi_result}} kg/m2</h3>
-                <h3>Comment: {{bmi_comment}}</h3>
-                <a class="refresh" href="{% url 'BMI' %}">Refresh</a>
-            {% endif %}
-		</div>
+			<button class="bmi_button" type="submit">Calculate</button>
+		</form>
 	</div>
-   
+
+    <div class="result">
+        {% if bmi_comment != '' %}
+        <br>
+            <h3>{{bmi_result}} kg/m2</h3>
+            <h3>Comment: {{bmi_comment}}</h3>
+            <a class="refresh" href="{% url 'BMI' %}">Refresh</a> <br>
+		{% endif %}
+		
+		{% load static %}
+		<img src="{% static 'images/BMI RT.png' %}" alt="BMI reference">
+
+	</div>
+
+	
+</div>
+
 </body>
 
 {% endblock %}

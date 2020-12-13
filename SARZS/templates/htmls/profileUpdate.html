@@ -1,0 +1,129 @@
+{% extends 'htmls/main.html' %}
+{% block content %}
+
+<head>
+	<style>
+		.form_class{
+			width: 390px;
+			margin: auto;
+			padding: 20px;
+			text-align: center;
+			background: -webkit-linear-gradient(left, #6bafa4, #a869b1);
+			margin-top: 20px;
+			box-shadow: 0 2px 15px rgba(64,64,64,.7);
+			border-radius: 10px;
+		}
+		.field{
+			height: 45px;
+			margin-bottom: 20px;
+			width: 330px;
+			margin: auto;
+			margin-top: 15px;
+			margin-bottom: 25px;	
+		}
+		.profile_icon{
+			background-color: rgb(238, 221, 71);
+			padding: 10px 17px;
+			border-radius: 5px;
+			float: left;
+		}
+
+		.pass_icon{
+			background-color: rgb(238, 221, 71);
+			padding: 10px 16px;
+			border-radius: 5px;
+			float: left;
+		}
+
+		.field input{
+			height: 100%;
+			width: 84%;
+			border-radius: 5px;
+  			border: 2px solid rgb(238, 221, 71);
+			border-bottom-width: 2px;
+			font-size: 17px;
+			float: right;
+						
+		}
+		.field input:focus{
+			border-color: #fc83bb;
+			
+		}
+
+		h2{
+			color: white;
+			font-weight: bold;
+			font-family: Georgia, serif;
+			padding: 20px;
+		}
+
+		  .button{
+            height: 45px;
+			width: 200px;
+			background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+			border: none;
+			color: #fff;
+			padding-left: 0;
+			border-radius: 5px;
+			font-size: 25px;
+			font-weight: 500;
+			cursor: pointer;
+			padding-bottom: 3px;
+			font-weight: bold;
+        }
+        .button:hover{
+            background-color: rgb(94, 66, 121);
+			text-decoration: none;
+			background: -webkit-linear-gradient(left, #fa4299, #a445b2);
+			color: aquamarine;
+		}
+		.switch{
+			color: yellow;
+		}
+		.switch:hover{
+			color: rgb(0, 255, 34);
+			text-decoration: none;
+		}
+		#container{
+			height: 90vh;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="form_class">
+		<h2>Profile Update</h2>
+		<form method="POST" action="{% url 'profileUpdate' %}">
+			{% csrf_token %}
+
+			<div class="field">
+				<span class="profile_icon"><i class="fas fa-user"></i></span>
+				{{u_form.username}}
+			</div>
+
+			<div class="field">
+				<span class="profile_icon"><i class="fas fa-envelope-square"></i></span>
+				{{u_form.email}}
+			</div>
+
+			<script>
+
+				//Query All input fields
+				var form_fields = document.getElementsByTagName('input')
+				form_fields[1].placeholder='New Username..';
+				form_fields[2].placeholder='New Email..';
+
+			</script>
+
+			<input  type="submit" value="Update" class="button">
+		</form>
+
+		{{form.errors}}
+	</div>
+</body>
+
+	
+
+        
+
+{% endblock %}

@@ -36,6 +36,7 @@ urlpatterns = [
     path('doctorRating/<int:id>', doctorRating, name='doctorRating'),
     path('doctorComment/<int:id>', doctorComment, name='doctorComment'),
     path('alldoctors', alldoctors, name='alldoctors'),
+    path('recordDoctor/<int:id>', recordDoctor, name='recordDoctor'),
 
     url(r'^login/$', loginPage, name='login'),
     url(r'^register/$', registerPage, name="register"),
@@ -46,6 +47,7 @@ urlpatterns = [
 
     url(r'^save_record/$', save_record, name='save_record'),
     url(r'^records/$', records, name='records'),
-
-
+    url(r'^profile/$', profile, name='profile'),
+    url(r'^profileUpdate/$', profileUpdate, name='profileUpdate'),
+    
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

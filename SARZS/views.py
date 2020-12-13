@@ -5,19 +5,15 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .filters import *
-
-
-from .forms import CreateUserForm
+from .forms import *
 
 def home(request):
     return render(request,'htmls/home.html')
 
 def show(request):
-    table_test = test.objects.all()
-
+    table_test = test.objects.all().order_by("Test_Name")
     myFilter = testFilter(request.GET, queryset=table_test)
     table_test = myFilter.qs
-
     return render(request, 'htmls/show.html', {'table_test': table_test, 'myFilter': myFilter})
 
 def check(request,id):
@@ -64,10 +60,10 @@ def result(request,id):
     def rcomment():
         return record_comment
 
-    return render(request,'htmls/result.html', {'row': row,'comment': comment,'suggetions': suggetions, 'disease_name': disease_name})
+    return render(request,'htmls/result.html', {'row': row, 'comment': comment, 'suggetions': suggetions, 'disease_name': disease_name})
 
 def registerPage(request):
-    a=''
+    a = ''
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
@@ -81,7 +77,7 @@ def registerPage(request):
             #messages.success(request, 'Account has created successfully for ' + user)
             return redirect('home')
 
-    return render(request,'htmls/register.html', {'form': form, 'a': a})
+    return render(request, 'htmls/register.html', {'form': form, 'a': a})
 
 def loginPage(request):
     a=''
@@ -100,7 +96,7 @@ def loginPage(request):
                 return redirect('home')
         else:
             messages.info(request, 'Username or password is wrong')
-    return render(request, 'htmls/login.html',{'a':a})
+    return render(request, 'htmls/login.html',{'a': a})
 
 def logoutUser(request):
     logout(request)
@@ -108,15 +104,12 @@ def logoutUser(request):
 
 def hospital(request):
     hospital_list = hospitals.objects.all()
-
     myFilter = hospitalFilter(request.GET, queryset=hospital_list)
     hospital_list = myFilter.qs
-
     return render(request,'htmls/hospitals.html',{'hospital_list': hospital_list, 'myFilter': myFilter})
 
 def diagnostic_center(request):
     diagnostic_list = diagnostic_centers.objects.all()
-
     myFilter = diagnostic_centerFilter(request.GET, queryset=diagnostic_list)
     diagnostic_list = myFilter.qs
 
@@ -145,7 +138,7 @@ def BMI(request):
         elif (BMI >= 18.5 and BMI < 25):
             bmi_comment = "You are normal"
         elif (BMI >= 25 and BMI < 30):
-            bmi_comment = "You have Overweigh"
+            bmi_comment = "You have Overweight"
         elif (BMI >= 30 and BMI < 35):
             bmi_comment = "You have Obese Class I"
         elif (BMI >= 35 and BMI < 40):
@@ -163,23 +156,26 @@ def doctor(request):
     #doctor_dept = request.session['result_doctor']
     doctor_dept = result_doctor()
     special_doctor = doctor_list.objects.filter(Department__icontains=doctor_dept)
-
     myFilter = doctorFilter(request.GET, queryset=special_doctor)
     special_doctor = myFilter.qs
-
     return render(request, 'htmls/doctor.html', {'doctor_dept': doctor_dept, 'special_doctor': special_doctor, 'myFilter': myFilter})
 
 @login_required(login_url='via')
-def alldoctors(request):
-
-    doctor_dept = "Expert Doctors"
-    special_doctor = doctor_list.objects.all()
-
-    myFilter = alldoctorFilter(request.GET, queryset=special_doctor)
+def recordDoctor(request, id):
+    doctor = record.objects.get(id=id)
+    special_doctor = doctor_list.objects.filter(Department__icontains=doctor.tdoctor)
+    myFilter = doctorFilter(request.GET, queryset=special_doctor)
     special_doctor = myFilter.qs
 
-    return render(request, 'htmls/doctor.html', {'doctor_dept': doctor_dept, 'special_doctor': special_doctor, 'myFilter': myFilter})
+    return render(request, 'htmls/doctor.html', {'doctor_dept': doctor.tdoctor, 'special_doctor': special_doctor, 'myFilter': myFilter})
 
+@login_required(login_url='via')
+def alldoctors(request):
+    doctor_dept = "Expert Doctors"
+    special_doctor = doctor_list.objects.all()
+    myFilter = alldoctorFilter(request.GET, queryset=special_doctor)
+    special_doctor = myFilter.qs
+    return render(request, 'htmls/doctor.html', {'doctor_dept': doctor_dept, 'special_doctor': special_doctor, 'myFilter': myFilter})
 
 def via(request):
     return render(request, 'htmls/via.html')
@@ -189,7 +185,7 @@ def via_login(request):
     if request.method == 'POST':
         if 'next' in request.POST:
             a = request.POST.get('next')
-            return render(request,'htmls/login.html',{'a':a})
+            return render(request, 'htmls/login.html', {'a': a})
     return render(request, 'htmls/via.html')
 
 def via_register(request):
@@ -210,13 +206,14 @@ def save_record(request):
         Record.tlevel = tlevel()
         Record.treference = treference()
         Record.rcomment = rcomment()
+        Record.tdoctor = result_doctor()
         Record.save()
     return redirect('records')
 
 @login_required(login_url='via')
 def records(request):
     if request.user.is_authenticated:
-        user_record = record.objects.filter(ruser=request.user)
+        user_record = record.objects.filter(ruser=request.user).order_by("-rdate")
     return render(request, 'htmls/records.html', {'user_record': user_record})
 
 @login_required(login_url='via')
@@ -254,14 +251,12 @@ def doctorComment(request,id):
 
 @login_required(login_url='via')
 def hospitalDetails(request,id):
-
     hospital = hospitals.objects.get(id=id)
     row = hospitalReview.objects.filter(Hid=hospital.Hid).order_by("-date")
-
-    return render(request, 'htmls/HospitalReview.html', {'row':row, 'hospital': hospital})
+    return render(request, 'htmls/HospitalReview.html', {'row': row, 'hospital': hospital})
 
 @login_required(login_url='via')
-def hospitalRating(request,id):
+def hospitalRating(request, id):
     hospital = hospitals.objects.get(id=id)
     if request.method == 'POST':
         ratings = float(request.POST['rating'])
@@ -272,7 +267,7 @@ def hospitalRating(request,id):
     return redirect('hospitalDetails',id)
 
 @login_required(login_url='via')
-def hospitalComment(request,id):
+def hospitalComment(request, id):
     hospital = hospitals.objects.get(id=id)
     comment_table = hospitalReview()
     if request.method == 'POST':
@@ -282,24 +277,22 @@ def hospitalComment(request,id):
         comment_table.comment = comments
         comment_table.save()
 
-    return redirect('hospitalDetails',id)
+    return redirect('hospitalDetails', id)
 
 @login_required(login_url='via')
-def diagnosticDetails(request,id):
-
+def diagnosticDetails(request, id):
     diagnostic = diagnostic_centers.objects.get(id=id)
     row = diagnosticReview.objects.filter(Did=diagnostic.Did).order_by("-date")
-
     return render(request, 'htmls/DiagnosticReview.html', {'row':row, 'diagnostic': diagnostic})
 
 @login_required(login_url='via')
-def diagnosticRating(request,id):
+def diagnosticRating(request, id):
     diagnostic = diagnostic_centers.objects.get(id=id)
     if request.method == 'POST':
         ratings = float(request.POST['rating'])
         diagnostic.TotalRating = diagnostic.TotalRating + ratings
         diagnostic.numberOfRating += 1
-        diagnostic.Rating = round((diagnostic.TotalRating/diagnostic.numberOfRating),2)
+        diagnostic.Rating = round((diagnostic.TotalRating/diagnostic.numberOfRating), 2)
         diagnostic.save()
     return redirect('diagnosticDetails',id)
 
@@ -315,3 +308,22 @@ def diagnosticComment(request,id):
         comment_table.save()
 
     return redirect('diagnosticDetails',id)
+
+@login_required(login_url='via')
+def profile(request):
+    context = {
+        'user': request.user
+    }
+    return render(request, 'htmls/profile.html', context)
+
+@login_required(login_url='via')
+def profileUpdate(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        if u_form.is_valid():
+            u_form.save()
+            messages.success(request, f'Account updated successfully')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+    return render(request, 'htmls/profileUpdate.html',{'u_form': u_form})

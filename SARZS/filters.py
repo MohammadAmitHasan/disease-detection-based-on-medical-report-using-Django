@@ -26,7 +26,7 @@ class doctorFilter(django_filters.FilterSet):
     Name = CharFilter(field_name='Name', lookup_expr='icontains')
     class Meta:
         model = doctor_list
-        fields = ['Name', 'Department', 'Area']
+        fields = ['Name', 'Area']
         
 
 class alldoctorFilter(django_filters.FilterSet):

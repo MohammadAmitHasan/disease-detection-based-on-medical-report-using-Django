@@ -42,12 +42,23 @@
             background-color: rgb(78, 146, 192) ;
             text-decoration: none;
           }
+          .title{
+            background: rgb(18, 53, 58);
+            color: white;
+            padding: 7px 10px 2px;
+            margin-bottom: 10px;
+            font-family: Georgia, serif;
+            text-align: center;
+        }
 
     </style>
 </head>
 
 <div class="via">
-<h2>This is only for registered users</h2><br>
+<div class="title">
+  <h2>This feature is only for registered users</h2>
+</div>
+<br>
 <h4>If you have an account already, Click login</h4>
 <form action="{% url 'via_login' %}" method="post">
     {% csrf_token %}

@@ -37,7 +37,7 @@
                   position: fixed;
                   width: 100%;
                   line-height: 60px;
-                  background:  rgb(9, 23, 100);
+                  background: rgb(12, 25, 104);
                   z-index: 2;
             }
             
@@ -54,7 +54,7 @@
             }
             
             nav.black ul {
-                  background: rgb(9, 23, 100);
+                  background: rgb(12, 25, 104);
             }
             
             nav ul li {
@@ -66,7 +66,7 @@
                   font-size: 20px;
                   text-decoration: none;
                   color: white;
-                  padding: 10px 20px;;
+                  padding: 9px 12px;;
             }
             nav ul li a:hover{
                   text-decoration: none;
@@ -80,7 +80,7 @@
                   font-size: 20px;
                   text-decoration: none;
                   color: rgb(79, 219, 24);
-                  padding: 10px 10px;;
+                  padding: 9px 10px;;
                   font-weight: bold;
             }
             .log_in:hover{
@@ -95,13 +95,13 @@
                   font-size: 20px;
                   text-decoration: none;
                   color: rgb(255, 0, 0);
-                  padding: 10px 10px;;
+                  padding: 9px 10px;;
                   font-weight: bold;
+                  border-radius: 5px;
             }
             .log_out:hover{
                   text-decoration: none;
                   color: rgb(255, 0, 0);
-                  border-radius: 5px;
                   box-shadow:  0 0 10px #ff0000,
                                0 0 15px #ff1f1f;
             }
@@ -109,7 +109,7 @@
             .menu-icon {
                   line-height: 60px;
                   width: 100%;
-                  background: rgb(9, 23, 100);
+                  background: rgb(12, 25, 104);
                   text-align: right;
                   box-sizing: border-box;
                   padding: 0.5px 24px;
@@ -118,7 +118,7 @@
                   display: none;
             }
             
-            @media(max-width: 1120px) {
+            @media(max-width: 1050px) {
             
                   .logo {
                         position: fixed;
@@ -128,11 +128,11 @@
             
                   nav ul {
                         max-height: 0px;
-                        background:  rgb(9, 23, 100);
+                        background: rgb(12, 25, 104);
                   }
             
                   nav.black ul {
-                        background: rgb(9, 23, 100);
+                        background: rgb(12, 25, 104);
                   }
             
                   .showing {
@@ -183,8 +183,8 @@
                                     <li><a href="{% url 'hospital' %}">Hospitals</a></li>
                                     <li><a href="{% url 'diagnostic_center' %}">Diagnostic_Centers</a></li>
                                     {% if user.is_authenticated %}
-                                    <li><a href="{% url 'records' %}">Records</a></li>
                                     <li><a href="{% url 'alldoctors' %}">Doctors</a></li>
+                                    <li><a href="{% url 'profile' %}">Profile</a></li>
                                     {% endif %}
                                     
                               </ul>

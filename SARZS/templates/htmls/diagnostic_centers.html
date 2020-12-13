@@ -73,12 +73,39 @@
         #details{
             text-align: left;
         }
+        .title{
+            background: rgb(18, 53, 58);
+            color: white;
+            padding: 7px 10px 2px;
+            margin-bottom: 10px;
+            font-family: Georgia, serif;
+            text-align: center;
+        }
+        .special_button{
+            font-size: 18px;
+            color:  white ;
+            background-color: blueviolet;
+            margin-right: 20px;           
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+          }
+          .special_button:hover{
+            color: white  ;
+            background-color: #4daf43 ;
+            text-decoration: none;
+          }
+
 
     </style>
 </head>
 <body>
 
-<H2 style="text-align: center;">Reputed Diagnostic Centers</H2>
+<div class="title">
+    <H2>Reputed Diagnostic Centers</H2>
+</div>
 
 <div class="bar">
     <form method="GET">
@@ -104,11 +131,12 @@
                 <b>Address: </b> {{ i.Address }} <br>
                 <b>Contact Number: </b> {{ i.Contact }} <br>
                 <b>Website: </b> <a href="{{ i.Website }}" target="_blank">Go to {{ i.Name }}'s Website</a> <br>
-                <b>Rating:  {{i.Rating}}/5 </b> ({{i.numberOfRating}} person rated)<br>
-                <a href="{% url 'diagnosticDetails' i.id %}"> <b>Rate & Comments</b> </a>
+                <b>Rating:  {{i.Rating}}/5 </b> ({{i.numberOfRating}} person rated)<br><br>
+
+                <a class="special_button" href="{% url 'diagnosticDetails' i.id %}">Rate & Comments</a>
             </td>
             <td>
-                <img id="photo" src="{{ i_hbe.photo.url }}" alt="Hospital Photo">
+                <img id="photo" src="{{ i.photo.url }}" alt="Hospital Photo">
             </td>
         </tr>
         {% endfor %}

@@ -97,11 +97,12 @@ class doctor_list(models.Model):
 
 class record(models.Model):
     ruser = models.CharField(max_length=100)
-    rdate = models.DateField(auto_now_add=True)
+    rdate = models.DateTimeField(auto_now_add=True, null=True)
     Test_Name = models.CharField(max_length=100, null=True)
     tlevel = models.FloatField()
     treference = models.CharField(max_length=100, null=True)
     rcomment = models.CharField(max_length=200, null=True)
+    tdoctor = models.CharField(max_length=100, null=True)
 
 class docReview(models.Model):
     DOCid = models.CharField(max_length=10, null=True)
