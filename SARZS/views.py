@@ -150,7 +150,7 @@ def BMI(request):
         else:
             bmi_comment = "You have Obese Class III"
 
-    return render(request, 'htmls/BMI.html',{ 'bmi_result':bmi_result, 'bmi_comment': bmi_comment})
+    return render(request, 'htmls/BMI.html',{ 'bmi_result': bmi_result, 'bmi_comment': bmi_comment})
 
 def growth(request):
     return render(request, 'htmls/growth.html')
@@ -216,8 +216,9 @@ def save_record(request):
 
 @login_required(login_url='via')
 def records(request):
+    userid = User.objects.get(username=request.user)
     if request.user.is_authenticated:
-        user_record = record.objects.filter(ruser=request.user).order_by("-rdate")
+        user_record = record.objects.filter(rid=userid.id).order_by("-rdate")
     return render(request, 'htmls/records.html', {'user_record': user_record})
 
 @login_required(login_url='via')

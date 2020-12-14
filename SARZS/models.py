@@ -96,7 +96,7 @@ class doctor_list(models.Model):
         return self.Name
 
 class record(models.Model):
-    ruser = models.CharField(max_length=100)
+    rid = models.IntegerField(default=1)
     rdate = models.DateTimeField(auto_now_add=True, null=True)
     Test_Name = models.CharField(max_length=100, null=True)
     tlevel = models.FloatField()
