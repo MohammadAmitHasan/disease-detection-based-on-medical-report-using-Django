@@ -69,7 +69,7 @@ def registerPage(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request,user)
+            login(request, user)
             user = form.cleaned_data.get('username')
             if 'next' in request.POST:
                 a = request.POST.get('next')
@@ -81,7 +81,7 @@ def registerPage(request):
     return render(request, 'htmls/register.html', {'form': form, 'a': a})
 
 def loginPage(request):
-    a=''
+    a = ''
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -150,7 +150,7 @@ def BMI(request):
         else:
             bmi_comment = "You have Obese Class III"
 
-    return render(request, 'htmls/BMI.html',{ 'bmi_result': bmi_result, 'bmi_comment': bmi_comment})
+    return render(request, 'htmls/BMI.html', {'bmi_result': bmi_result, 'bmi_comment': bmi_comment})
 
 def growth(request):
     return render(request, 'htmls/growth.html')
@@ -203,9 +203,10 @@ def via_register(request):
 
 @login_required(login_url='via')
 def save_record(request):
+    userid = User.objects.get(username=request.user)
     Record = record()
     if request.user.is_authenticated:
-        Record.ruser = request.user
+        Record.rid = userid.id
         Record.Test_Name = Test_Name()
         Record.tlevel = tlevel()
         Record.treference = treference()
