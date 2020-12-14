@@ -1,0 +1,427 @@
+
+/* For titles of pages */
+    .title{
+        background: rgb(18, 53, 58);
+        color: white;
+        padding: 7px 10px 2px;
+        margin-bottom: 10px;
+        font-family: Georgia, serif;
+        text-align: center;
+    }
+    .title h2{
+        color: white;
+        font-weight: bold;
+        font-family: Georgia, serif;
+        padding: 0px;
+    }
+
+/* For messages sent in the html pages */
+    .messages{
+        background: rgba(138, 255, 102, 0.76);
+        color: rgb(0, 83, 0);
+    }
+    .messages p{
+        padding: 10px;
+        font-weight: bold;
+        font-size: 18px;
+        padding-left: 20px;
+    }
+
+/* Form style */
+    .form_class{
+        width: 390px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+        background: -webkit-linear-gradient(left, #6bafa4, #a869b1);
+        margin-top: 20px;
+        box-shadow: 0 2px 15px rgba(64,64,64,.7);
+        border-radius: 10px;
+    }
+    .form_class h2{
+        color: white;
+        font-weight: bold;
+        font-family: Georgia, serif;
+        padding: 20px;
+    }
+    .field{
+        height: 45px;
+        margin-bottom: 20px;
+        width: 330px;
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 25px;	
+    }
+    .field input{
+        height: 100%;
+        width: 84%;
+        border-radius: 5px;
+        border: 2px solid rgb(238, 221, 71);
+        border-bottom-width: 2px;
+        font-size: 17px;
+        float: right;				
+    }
+    .field input:focus{
+        border-color: #fc83bb;	
+    }
+    .profile_icon{
+        background-color: rgb(238, 221, 71);
+        padding: 10px 17px;
+        border-radius: 5px;
+        float: left;
+    }
+
+    .pass_icon{
+        background-color: rgb(238, 221, 71);
+        padding: 10px 16px;
+        border-radius: 5px;
+        float: left;
+    }
+    .button{
+        height: 45px;
+        width: 200px;
+        background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+        border: none;
+        color: #fff;
+        padding-left: 0;
+        border-radius: 5px;
+        font-size: 25px;
+        font-weight: 500;
+        cursor: pointer;
+        padding-bottom: 3px;
+        font-weight: bold;
+    }
+    .button:hover{
+        background-color: rgb(94, 66, 121);
+        text-decoration: none;
+        background: -webkit-linear-gradient(left, #fa4299, #a445b2);
+        color: aquamarine;
+    }
+    .switch{
+        color: yellow;
+    }
+    .switch:hover{
+        color: rgb(0, 255, 34);
+        text-decoration: none;
+    }
+
+/* BMI calculator styles */
+    .BMI_form_class{
+        margin: auto;
+        width: 390px;
+        padding: 20px;
+        text-align: center;
+        background: -webkit-linear-gradient(left, #430b5e, #c96663);
+        margin-top: 20px;
+        box-shadow: 0 2px 15px rgba(64,64,64,.7);
+        border-radius: 10px;
+    }
+    .BMI_field{
+        height: 45px;
+        margin-bottom: 20px;
+        width: 330px;
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 25px;	
+    }
+    .BMI_field input{
+        height: 100%;
+        width: 80%;
+        border-radius: 5px;
+        border: 2px solid rgb(238, 221, 71);
+        border-bottom-width: 2px;
+        font-size: 17px;
+        float: left;				
+    }
+    .BMI_field input:focus{
+        border-color: #fc83bb;	
+    }
+    .BMI_field label{
+        background: green;
+        width: 17%;
+        height: 100%;
+        border-radius: 5px;
+        padding-top: 10px;
+        color: white;
+        font-size: 17px;
+    }
+    .description{
+        background: rgba(0, 0, 0, 0.658);
+        border-radius: 5px;
+        color: white;
+        padding: 5px;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 18px;
+    }
+    .result{
+        margin: auto;
+        text-align: center;
+    }
+    .result img{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        width: 390px;
+        border-radius: 7px;
+    }
+
+
+/* Filter form, Show all test */
+    .bar{
+        text-align: center;
+        background-color: darkcyan ;
+        border-radius: 10px;
+        color: beige;
+    }
+    .special{
+        padding-left: 15px;
+        padding-top: 20px;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+    
+
+/* Table design */
+    @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+    table{
+        margin: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
+        box-shadow: 0 2px 15px rgba(64,64,64,.7);
+        border-radius: 12px 12px 0 0;
+        margin-top: 5px;
+        overflow: hidden;
+    }
+
+    td , th{
+        padding: 15px 20px;
+        text-align: center;
+    }
+
+    th{
+        background-color: rgb(131, 5, 37);
+        color: #fafafa;
+        font-family: 'Open Sans',Sans-serif;
+        font-weight: 200;
+        text-transform: uppercase;
+    }
+
+    tr{
+        width: 100%;
+        background-color: #fafafa;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    tr:nth-child(even){
+        background-color: #eeeeee;
+    }
+
+    tr:last-of-type {
+        border-bottom: 5px solid rgb(131, 5, 37);
+    }
+
+
+/* Button design */
+    .submit_button{
+        height: 30px;
+        width: 100px;
+        background: -webkit-linear-gradient(left,  #1b0b49, #b43616);
+        border: none;
+        color: #fff;
+        padding-left: 0;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+    .submit_button:hover{
+        background-color: rgb(94, 66, 121);
+        text-decoration: none;
+        background: -webkit-linear-gradient(right,   #1b0b49, #b43616);
+        color: aquamarine;
+    }
+    .normal_button{
+        font-size: 18px;
+        color:  white ;
+        background-color: blueviolet;
+        margin-right: 20px;           
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 5px;
+    }
+    .normal_button:hover{
+        color: white  ;
+        background-color: #4daf43 ;
+        text-decoration: none;
+    }
+    .bmi_button{
+        height: 45px;
+        width: 200px;
+        background: -webkit-linear-gradient(left, #8cb245, #3827cf);
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 25px;
+        font-weight: 500;
+        cursor: pointer;
+        padding-bottom: 3px;
+        font-weight: bold;
+    }
+    .bmi_button:hover{
+        background-color: rgb(94, 66, 121);
+        text-decoration: none;
+        background: -webkit-linear-gradient(right,  #8cb245, #3827cf);
+        color: aquamarine;
+    }
+    .refresh{
+        background: -webkit-linear-gradient(left, #8cb245, #3827cf);
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 25px;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 2px 15px 5px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .refresh:hover{
+        background-color: rgb(94, 66, 121);
+        text-decoration: none;
+        background: -webkit-linear-gradient(right,  #8cb245, #3827cf);
+        color: aquamarine;
+    }
+
+/* Photos and details of doctor, hospital and diagnostic centers */
+    
+    .photo{
+        width: 200px;
+    }
+    .details{
+        text-align: left;
+    }
+
+/* Result color */
+    h4{
+        display: inline-block;
+    }
+
+    .imp{
+        color: blue;
+    }
+
+
+/* Review design */
+    .review_details{
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgb(0, 0, 0);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .review_details p img{
+        width: 200px;
+        float: right;
+    }
+    .ratings{
+        margin-top: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: rgb(202, 219, 219);
+        box-shadow: 0 5px 15px rgb(0, 0, 0);
+    }
+    .comments{
+        margin-top: 10px;
+        padding: 5px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+        background-color: rgb(202, 219, 219);
+        box-shadow: 0 5px 15px rgb(0, 0, 0);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .reviews{
+        margin-top: 10px;
+        padding: 5px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgb(0, 0, 0);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .reviews h3{
+        margin-top: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+/* Growth chart page design */
+    #chart img{
+        display: block;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 7px;
+        box-shadow: 0 10px 15px rgb(0, 0, 0);
+    }
+    @media(max-width: 750px) {
+
+    #chart img{
+        width: 90vw;
+    }
+    }
+
+
+/* Profile page design */
+    .user_details{
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    .link{
+        margin-top: 10px;
+    }
+
+/* Redirecting page design */
+    .via{
+        text-align: center;
+    }
+
+    .log{
+        font-size: 18px;
+        color:  #68e75b ;
+        font-weight: bold;
+        padding-top: 2px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 5px;
+        background-color: black;
+    }
+
+  .log:hover{
+    color:   white  ;
+    background-color: #43943a ;
+    text-decoration: none;
+  }
+  .reg{
+    font-size: 18px;
+    color:  rgb(86, 174, 233) ;
+    font-weight: bold;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    background-color: black;
+  }
+
+  .reg:hover{
+    color:   white  ;
+    background-color: rgb(78, 146, 192) ;
+    text-decoration: none;
+  }

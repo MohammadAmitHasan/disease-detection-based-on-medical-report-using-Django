@@ -1,0 +1,97 @@
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            height: 100%;
+        }
+
+        body{
+            background: url("{% static 'images/background.jpg' %}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: "Inter", sans-serif;
+        }
+      
+        #content2 {
+            position: static;
+            border-radius: 7px;
+            margin-top: 0px;
+            color: white;
+            font-size: 20px;
+            width: 100%;
+            height: 80vh;
+        }
+      
+        #content2 a{
+            color: cyan;
+        }
+        
+        .slideshow_item{
+            opacity: 0;
+            animation: cycleImages 36s infinite;
+            position: absolute;
+            border-radius: 5px;
+            width: 97.8%;
+        }
+
+        .slideshow_item:nth-child(1){
+            animation-delay: 0s;
+        }
+        .slideshow_item:nth-child(2){
+            animation-delay: 5s;
+        }
+        .slideshow_item:nth-child(3){
+            animation-delay: 10s;
+        }
+        .slideshow_item:nth-child(4){
+            animation-delay: 15s;
+        }
+        .slideshow_item:nth-child(5){
+            animation-delay: 20s;
+        }
+        .slideshow_item:nth-child(6){
+            animation-delay: 25s;
+        }
+        .slideshow_item:nth-child(7){
+            animation-delay: 30s;
+        }
+
+        .slideshow-item-text{
+            background: rgba(0, 0, 0, 0.658);
+            width: 58vw;
+            border-radius: 5px;
+            padding: 10px;
+            margin: auto;
+            margin-top: 4px;
+            box-shadow: 0 5px 15px rgb(0, 0, 0); 
+            text-align: center;
+        }
+        .slideshow_item img{
+            border-radius: 5px;
+            box-shadow: 0 10px 15px rgb(0, 0, 0);
+            width: 58vw;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        @media(max-width: 750px) {
+            .slideshow-item-text{
+            width: 90%;
+            }
+            .slideshow_item img{
+            width: 90%;
+            }
+        }
+        
+        @keyframes cycleImages{
+            10%{
+            opacity: 1;
+            }
+            20%{
+            opacity: 0;
+            }
+        }

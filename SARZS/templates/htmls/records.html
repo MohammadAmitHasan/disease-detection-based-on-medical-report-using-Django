@@ -1,84 +1,21 @@
 {% extends 'htmls/main.html' %}
-
 {% block content %}
+{% load static %}
+
 <head>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
-        table{
-            margin: auto;
-            border-collapse: collapse;
-            border-spacing: 0;
-            box-shadow: 0 2px 15px rgba(64,64,64,.7);
-            border-radius: 12px 12px 0 0;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-
-        td , th{
-            padding: 15px 20px;
-            text-align: center;
-        }
-
-        th{
-            background-color: rgb(131, 5, 37);
-            color: #fafafa;
-            font-family: 'Open Sans',Sans-serif;
-            font-weight: 200;
-            text-transform: uppercase;
-        }
-
-        tr{
-            width: 100%;
-            background-color: #fafafa;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        tr:nth-child(even){
-            background-color: #eeeeee;
-        }
-
-        tr:last-of-type {
-            border-bottom: 5px solid rgb(131, 5, 37);
-        }
-        
-        #details{
-            text-align: left;
-        }
-        .link{
-            margin-top: 10px;
-        }
-        .special_button{
-            font-size: 18px;
-            color:  white ;
-            background-color: blueviolet;
-            margin-right: 20px;           
-            padding-top: 4px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 5px;
-          }
-          .special_button:hover{
-            color: white  ;
-            background-color: #4daf43 ;
-            text-decoration: none;
-          }
-          .title{
-            background: rgb(18, 53, 58);
-            color: white;
-            padding: 7px 10px 2px;
-            margin-bottom: 10px;
-            font-family: Georgia, serif;
-            text-align: center;
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 
 <body>
 
 <div class="title">
     <h2>Previous tested records of {{ user }}</h2>
+</div>
+
+<div class="messages">      
+    {% for i in messages %}
+        <p>{{ i }}</p>
+    {% endfor %}
 </div>
 
 <table>
@@ -91,13 +28,13 @@
     <tr>
         <td>{{i.rdate}}</td>
         <td>{{i.Test_Name}}</td>
-        <td id="details">
+        <td class="details">
             <b>Level: </b>{{i.tlevel}} <br>
             <b>Normal Value/Reference Value: </b> {{i.treference}} <br>
             <b>Comment: </b> {{i.rcomment}} <br>
             <b>Suggested Doctor: </b> {{i.tdoctor}} <br>
             <div class="link">
-                <a class='special_button' href="{% url 'recordDoctor' i.id %}">Get Expert {{i.tdoctor}} list</a>
+                <a class='normal_button' href="{% url 'recordDoctor' i.id %}">Get Expert {{i.tdoctor}} list</a>
             </div>
         </td>
         

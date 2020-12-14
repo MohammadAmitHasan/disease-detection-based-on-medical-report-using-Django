@@ -1,56 +1,14 @@
 {% extends 'htmls/main.html' %}
 {% block content %}
-
+{% load static %}
 
 <head>
-    
-    <style>
-        body{
-            font-family: Helvetica, sans-serif;
-        }
-        #details{
-            padding: 5px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgb(0, 0, 0);
-        }
-        #details p img{
-            width: 200px;
-            float: right;
-        }
-        #ratings{
-            margin-top: 10px;
-            padding: 5px;
-            border-radius: 5px;
-            background-color: rgb(202, 219, 219);
-            box-shadow: 0 5px 15px rgb(0, 0, 0);
-        }
-        #comments{
-            margin-top: 10px;
-            padding: 5px;
-            padding-bottom: 10px;
-            border-radius: 5px;
-            background-color: rgb(202, 219, 219);
-            box-shadow: 0 5px 15px rgb(0, 0, 0);
-        }
-        #reviews{
-            margin-top: 10px;
-            padding: 5px;
-            padding-bottom: 10px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgb(0, 0, 0);
-        }
-        #reviews h4{
-            margin-top: 5px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 
 <body>
 
-    <div id="details">
+    <div class="details">
         <p>
             <img src="{{ hospital.photo.url }}" alt="">
             <br>
@@ -65,9 +23,9 @@
         </p>
     </div>
 
-<div id="review">
+<div class="review">
 
-    <div id="ratings">
+    <div class="ratings">
         <form action="{% url 'hospitalRating' hospital.id %}" method="POST">
             {% csrf_token %}
             
@@ -81,7 +39,7 @@
         </form>
     </div>
 
-    <div id="comments">
+    <div class="comments">
         <form action="{% url 'hospitalComment' hospital.id %}" method="POST">
             {% csrf_token %}
             <textarea name="comment" cols="20" rows="1"></textarea>
@@ -93,8 +51,8 @@
 </div>
 
 <hr>
-<div id="reviews">
-    <h4>Comments</h4>
+<div class="reviews">
+    <h3>Comments</h3>
     {% for i in row %}
         <b>{{i.user}}</b>  {{i.date}}
             <br>

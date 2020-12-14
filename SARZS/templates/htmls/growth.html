@@ -1,41 +1,9 @@
 {% extends 'htmls/main.html' %}
 {% block content %}
+{% load static %}
 
 <head>
-
-    <style>
-        .description{
-            background: rgba(0, 0, 0, 0.658);
-            border-radius: 5px;
-            color: white;
-            padding: 5px;
-            margin-top: 10px;
-            text-align: center;
-            font-size: 18px;
-          }
-          #chart img{
-              display: block;
-              margin-top: 10px;
-              margin-left: auto;
-              margin-right: auto;
-              border-radius: 7px;
-              box-shadow: 0 10px 15px rgb(0, 0, 0);
-          }
-          @media(max-width: 750px) {
-        
-            #chart img{
-                width: 90vw;
-            }
-        }
-        .title{
-            background: rgb(18, 53, 58);
-            color: white;
-            padding: 7px 10px 2px;
-            margin-bottom: 10px;
-            font-family: Georgia, serif;
-			text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 
 <body>

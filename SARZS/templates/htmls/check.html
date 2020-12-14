@@ -1,79 +1,9 @@
 {% extends 'htmls/main.html' %}
 {% block content %}
+{% load static %}
+
 <head>
-    <style>
-
-        .submit_button{
-            height: 30px;
-			width: 100px;
-			background: -webkit-linear-gradient(left,  #1b0b49, #b43616);
-			border: none;
-			color: #fff;
-			padding-left: 0;
-			border-radius: 5px;
-			font-size: 18px;
-			font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 5px;
-            margin-left: 10px;
-        }
-        .submit_button:hover{
-            background-color: rgb(94, 66, 121);
-			text-decoration: none;
-			background: -webkit-linear-gradient(right,   #1b0b49, #b43616);
-			color: aquamarine;
-		}
-
-          @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
-        table{
-            margin: auto;
-            border-collapse: collapse;
-            border-spacing: 0;
-            box-shadow: 0 2px 15px rgba(64,64,64,.7);
-            border-radius: 12px 12px 0 0;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-
-        td , th{
-            padding: 15px 20px;
-            text-align: center;
-        }
-
-        th{
-            background-color: rgb(131, 5, 37);
-            color: #fafafa;
-            font-family: 'Open Sans',Sans-serif;
-            font-weight: 200;
-            text-transform: uppercase;
-        }
-
-        tr{
-            width: 100%;
-            background-color: #fafafa;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        tr:nth-child(even){
-            background-color: #eeeeee;
-        }
-
-        tr:last-of-type {
-            border-bottom: 5px solid rgb(131, 5, 37);
-        }
-
-        .description{
-            background: rgba(0, 0, 0, 0.658);
-            border-radius: 5px;
-            color: white;
-            padding: 5px;
-            margin-top: 10px;
-            text-align: center;
-            font-size: 18px;
-          }
-          
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 
 <body>

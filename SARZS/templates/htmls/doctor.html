@@ -1,111 +1,21 @@
 {% extends 'htmls/main.html' %}
 {% block content %}
+{% load static %}
+
 <head>
-    <style>
-        .bar{
-            text-align: center;
-            background-color: darkcyan ;
-            border-radius: 10px;
-            color: beige;
-        }
-        .submit_button{
-            height: 30px;
-			width: 100px;
-			background: -webkit-linear-gradient(left,  #1b0b49, #b43616);
-			border: none;
-			color: #fff;
-			padding-left: 0;
-			border-radius: 5px;
-			font-size: 18px;
-			font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 5px;
-            margin-left: 10px;
-        }
-        .submit_button:hover{
-            background-color: rgb(94, 66, 121);
-			text-decoration: none;
-			background: -webkit-linear-gradient(right,   #1b0b49, #b43616);
-			color: aquamarine;
-		}
-
-          @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
-        table{
-            margin: auto;
-            border-collapse: collapse;
-            border-spacing: 0;
-            box-shadow: 0 2px 15px rgba(64,64,64,.7);
-            border-radius: 12px 12px 0 0;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-
-        td , th{
-            padding: 15px 20px;
-            text-align: center;
-        }
-
-        th{
-            background-color: rgb(131, 5, 37);
-            color: #fafafa;
-            font-family: 'Open Sans',Sans-serif;
-            font-weight: 200;
-            text-transform: uppercase;
-        }
-
-        tr{
-            width: 100%;
-            background-color: #fafafa;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        tr:nth-child(even){
-            background-color: #eeeeee;
-        }
-
-        tr:last-of-type {
-            border-bottom: 5px solid rgb(131, 5, 37);
-        }
-
-        #photo{
-            width: 200px;
-        }
-        #details{
-            text-align: left;
-        }
-        .title{
-            background: rgb(18, 53, 58);
-            color: white;
-            padding: 7px 10px 2px;
-            margin-bottom: 10px;
-            font-family: Georgia, serif;
-            text-align: center;
-        }
-        .special_button{
-            font-size: 18px;
-            color:  white ;
-            background-color: blueviolet;
-            margin-right: 20px;           
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 5px;
-          }
-          .special_button:hover{
-            color: white  ;
-            background-color: #4daf43 ;
-            text-decoration: none;
-          }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 
 <body>
     
 <div class="title">
     <h2>List of {{ doctor_dept }}</h2>
+</div>
+
+<div class="messages">      
+    {% for i in messages %}
+        <p>{{ i }}</p>
+    {% endfor %}
 </div>
 
 <div class="bar">
@@ -127,17 +37,17 @@
     <tr>
     <td>{{i.DOCid}}</td>
     <td><b>{{i.Name}}</b></td>
-    <td id="details">
+    <td class="details">
         <b>Designation: </b> {{i.Designation}} <br>
         <b>Qualification: </b> {{i.Qualification}} <br>
         <b>Department: </b> {{i.Department}} <br>
         <b>Address</b> {{i.Address}} <br>
         <b>Contact Number: </b> {{i.Contact}} <br>
         <b>Rating:  {{i.rating}}/5 </b> ({{i.numberOfRating}} person rated)<br><br>
-        <a class="special_button" href="{% url 'doctorDetails' i.id %}">Rate & Comments</a>
+        <a class="normal_button" href="{% url 'doctorDetails' i.id %}">Rate & Comments</a>
     </td>
     <td>
-        <img id="photo" src="{{ i.photo.url }}" alt="">
+        <img class="photo" src="{{ i.photo.url }}" alt="">
     </td>
     
     {% endfor %}

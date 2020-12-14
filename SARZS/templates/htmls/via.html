@@ -1,57 +1,9 @@
 {% extends 'htmls/main.html' %}
-
 {% block content %}
+{% load static %}
 
 <head>
-    <style>
-        .via{
-            text-align: center;
-        }
-
-        .log{
-            font-size: 18px;
-            color:  #68e75b ;
-            font-weight: bold;
-            padding-top: 2px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 5px;
-            background-color: black;
-          }
-        
-          .log:hover{
-            color:   white  ;
-            background-color: #43943a ;
-            text-decoration: none;
-          }
-          .reg{
-            font-size: 18px;
-            color:  rgb(86, 174, 233) ;
-            font-weight: bold;
-            padding-top: 2px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 5px;
-            background-color: black;
-          }
-        
-          .reg:hover{
-            color:   white  ;
-            background-color: rgb(78, 146, 192) ;
-            text-decoration: none;
-          }
-          .title{
-            background: rgb(18, 53, 58);
-            color: white;
-            padding: 7px 10px 2px;
-            margin-bottom: 10px;
-            font-family: Georgia, serif;
-            text-align: center;
-        }
-
-    </style>
+  <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 
 <div class="via">

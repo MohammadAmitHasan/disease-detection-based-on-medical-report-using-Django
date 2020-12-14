@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .filters import *
 from .forms import *
+from .models import *
 
 def home(request):
     return render(request,'htmls/home.html')
@@ -70,11 +70,12 @@ def registerPage(request):
         if form.is_valid():
             user = form.save()
             login(request,user)
+            user = form.cleaned_data.get('username')
             if 'next' in request.POST:
                 a = request.POST.get('next')
+                messages.success(request, f'Account has created successfully for ' + user)
                 return redirect(request.POST.get('next'))
-            #user = form.cleaned_data.get('username')
-            #messages.success(request, 'Account has created successfully for ' + user)
+            messages.success(request, f'Account has created successfully for ' + user)
             return redirect('home')
 
     return render(request, 'htmls/register.html', {'form': form, 'a': a})
@@ -91,8 +92,10 @@ def loginPage(request):
             login(request, user)
             if 'next' in request.POST:
                 a = request.POST.get('next')
+                messages.success(request, f'Loged in successfully for '+ user.username)
                 return redirect(request.POST.get('next'))
             else:
+                messages.success(request, f'Loged in successfully for '+ user.username)
                 return redirect('home')
         else:
             messages.info(request, 'Username or password is wrong')
@@ -100,6 +103,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
+    messages.success(request, f'Loged out successfully')
     return redirect('home')
 
 def hospital(request):

@@ -1,143 +1,51 @@
 {% extends 'htmls/main.html' %}
-
 {% block content %}
+{% load static %}
+
 <html>
 <head>
-	<title>Login</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
-	<style>
-		
-		.form_class{
-			width: 390px;
-			margin: auto;
-			padding: 20px;
-			text-align: center;
-			background: -webkit-linear-gradient(left, #6bafa4, #a869b1);
-			margin-top: 20px;
-			box-shadow: 0 2px 15px rgba(64,64,64,.7);
-			border-radius: 10px;
-		}
-		.field{
-			height: 45px;
-			margin-bottom: 20px;
-			width: 330px;
-			margin: auto;
-			margin-top: 15px;
-			margin-bottom: 25px;	
-		}
-		.profile_icon{
-			background-color: rgb(238, 221, 71);
-			padding: 10px 17px;
-			border-radius: 5px;
-			float: left;
-		}
-
-		.pass_icon{
-			background-color: rgb(238, 221, 71);
-			padding: 10px 16px;
-			border-radius: 5px;
-			float: left;
-		}
-
-		.field input{
-			height: 100%;
-			width: 84%;
-			border-radius: 5px;
-  			border: 2px solid rgb(238, 221, 71);
-			border-bottom-width: 2px;
-			font-size: 17px;
-			float: right;
-						
-		}
-		.field input:focus{
-			border-color: #fc83bb;
-			
-		}
-
-		h2{
-			color: white;
-			font-weight: bold;
-			font-family: Georgia, serif;
-			padding: 20px;
-		}
-
-		  .button{
-            height: 45px;
-			width: 200px;
-			background: -webkit-linear-gradient(left, #a445b2, #fa4299);
-			border: none;
-			color: #fff;
-			padding-left: 0;
-			border-radius: 5px;
-			font-size: 25px;
-			font-weight: 500;
-			cursor: pointer;
-			padding-bottom: 3px;
-			font-weight: bold;
-        }
-        .button:hover{
-            background-color: rgb(94, 66, 121);
-			text-decoration: none;
-			background: -webkit-linear-gradient(left, #fa4299, #a445b2);
-			color: aquamarine;
-		}
-		.switch{
-			color: yellow;
-		}
-		.switch:hover{
-			color: rgb(0, 255, 34);
-			text-decoration: none;
-		}
-		#container{
-			height: 90vh;
-		}
-
-	</style>
-
-
+	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 
 <body>
-<div id="container">
 
   <div class="form_class">
 	<h2>Login Form</h2>
 
-  <form method="POST" action="{% url 'login' %}">
+  	<form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
 
-	<div class="field">
-	<span class="profile_icon"><i class="fas fa-user"></i></span>		
-	<input type="text" name="username" placeholder="Username..." >			
-	</div>
+		<div class="field">
+		<span class="profile_icon"><i class="fas fa-user"></i></span>		
+		<input type="text" name="username" placeholder="Username..." >			
+		</div>
 
-	<div class="field">
-	<span class="pass_icon"><i class="fas fa-key"></i></span>						
-	<input type="password" name="password" placeholder="Password..."  >
-	</div>
+		<div class="field">
+		<span class="pass_icon"><i class="fas fa-key"></i></span>						
+		<input type="password" name="password" placeholder="Password..."  >
+		</div>
 
-	<script>
+		<script>
+			for (var field in form_fields){
+				form_fields[field].className += ' form-control'
+			}
+		</script>
 
-		for (var field in form_fields){
-			form_fields[field].className += ' form-control'
-		}
-	</script>
-
-	{% if a != '' %}
-	<input type="hidden" name="next" value="{{ a }}">
-	{%  endif %}
-	
-	<input type="submit" value="Login" class="button">			   			
+		{% if a != '' %}
+		<input type="hidden" name="next" value="{{ a }}">
+		{%  endif %}
+		
+		<input type="submit" value="Login" class="button">			   			
 	</form>
 
-  {% for message in messages %}
-      <p id="messages">{{message}}</p>
-  {% endfor %}
-				
-  Don't have an account? <a class="switch" href="{% url 'register' %}">Register</a>
+	{% for message in messages %}
+		<p id="messages">{{message}}</p>
+	{% endfor %}
+					
+	Don't have an account? <a class="switch" href="{% url 'register' %}">Register</a>
   </div>	
-</div>  		
+		
 </body>
 </html>
 {% endblock %}

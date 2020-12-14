@@ -1,125 +1,9 @@
 {% extends 'htmls/main.html' %}
-
 {% block content %}
+{% load static %}
+
 <head>
-
-    <style>
-
-        .bar{
-            text-align: center;
-            background-color: darkcyan ;
-            border-radius: 10px;
-            color: beige;
-        }
-        .submit_button{
-            height: 30px;
-			width: 100px;
-			background: -webkit-linear-gradient(left,  #1b0b49, #b43616);
-			border: none;
-			color: #fff;
-			padding-left: 0;
-			border-radius: 5px;
-			font-size: 18px;
-			font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 5px;
-            margin-left: 10px;
-        }
-        .submit_button:hover{
-            background-color: rgb(94, 66, 121);
-			text-decoration: none;
-			background: -webkit-linear-gradient(right,   #1b0b49, #b43616);
-			color: aquamarine;
-		}
-
-          @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
-        table{
-            margin: auto;
-            border-collapse: collapse;
-            border-spacing: 0;
-            box-shadow: 0 2px 15px rgba(64,64,64,.7);
-            border-radius: 12px 12px 0 0;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-
-        td , th{
-            padding: 15px 20px;
-            text-align: center;
-        }
-
-        th{
-            background-color: rgb(131, 5, 37);
-            color: #fafafa;
-            font-family: 'Open Sans',Sans-serif;
-            font-weight: 200;
-            text-transform: uppercase;
-        }
-
-        tr{
-            width: 100%;
-            background-color: #fafafa;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        tr:nth-child(even){
-            background-color: #eeeeee;
-        }
-
-        tr:last-of-type {
-            border-bottom: 5px solid rgb(131, 5, 37);
-        }
-
-        .button{
-            font-size: 18px;
-            color:  white ;
-            background-color: blueviolet;
-            margin-right: 20px;           
-            padding-top: 3px;
-            padding-bottom: 3px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 5px;
-          }
-          .button:hover{
-            color: white  ;
-            background-color: #4daf43 ;
-            text-decoration: none;
-          }
-          .special{
-            padding-left: 15px;
-            padding-top: 20px;
-            text-align: center;
-            padding-bottom: 20px;
-        }
-        .special_button{
-            font-size: 18px;
-            color:  white ;
-            background-color: blueviolet;
-            margin-right: 20px;           
-            padding-top: 2px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 5px;
-          }
-          .special_button:hover{
-            color: white  ;
-            background-color: #4daf43 ;
-            text-decoration: none;
-          }
-          .title{
-            background: rgb(18, 53, 58);
-            color: white;
-            padding: 7px 10px 2px;
-            margin-bottom: 10px;
-            font-family: Georgia, serif;
-            text-align: center;
-        }
-          
-    </style>
-    
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 
 <body>
@@ -129,15 +13,15 @@
     </div>
 
     <div class="bar">
-    <form method="GET">
-        {{myFilter.form}}
-        <button class="submit_button" type="submit">Search</button>
-    </form>
+        <form method="GET">
+            {{myFilter.form}}
+            <button class="submit_button" type="submit">Search</button>
+        </form>
     </div>
 
     <div class="special">
-        <a class="special_button" href="{% url 'BMI' %}">Body Mass Index</a>
-        <a class="special_button" href="{% url 'growth' %}">Standard Growth Chart</a>
+        <a class="normal_button" href="{% url 'BMI' %}">Body Mass Index</a>
+        <a class="normal_button" href="{% url 'growth' %}">Standard Growth Chart</a>
     </div>
 
     <table>
@@ -152,7 +36,7 @@
             <td>{{ i.tid }}</td>
             <td >{{ i.Test_Name }}</td>
             <td>
-                <a class="button" href="{% url 'check' i.id %}">Check</a>
+                <a class="normal_button" href="{% url 'check' i.id %}">Check</a>
             </td>
         </tr>
         {% endfor %}

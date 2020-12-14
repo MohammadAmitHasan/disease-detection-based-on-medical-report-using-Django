@@ -1,39 +1,9 @@
 {% extends 'htmls/main.html' %}
 {% block content %}
+{% load static %}
 
 <head>
-
-    <style>
-        .title{
-            background: rgb(18, 53, 58);
-            color: white;
-            padding: 7px 10px 2px;
-            margin-bottom: 20px;
-            font-family: Georgia, serif;
-            text-align: center;
-        }
-        .special_button{
-            font-size: 18px;
-            color:  white ;
-            background-color: blueviolet;
-            margin-right: 20px;           
-            padding-top: 2px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 5px;
-          }
-          .special_button:hover{
-            color: white  ;
-            background-color: #4daf43 ;
-            text-decoration: none;
-          }
-          .details{
-              margin-top: 20px;
-              font-size: 20px;
-          }
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
 </head>
 
 <body>
@@ -44,9 +14,15 @@
             <h2>Profile</h2>
         </div>
 
-        <a class="special_button" href="{% url 'records' %}">Show previos checked test records</a>
+        <div class="messages">      
+            {% for i in messages %}
+                <p>{{ i }}</p>
+            {% endfor %}
+        </div>
 
-        <div class="details">
+        <a class="normal_button" href="{% url 'records' %}">Show previos checked test records</a>
+
+        <div class="user_details">
             <b>User ID:</b> {{ user }} <br>
             <b>User Email address:</b> {{ user.email }} <br>
             <a href="{% url 'profileUpdate' %}">Update Profile</a>
