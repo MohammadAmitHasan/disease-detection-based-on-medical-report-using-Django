@@ -5,15 +5,6 @@
         html, body{
             height: 100%;
         }
-
-        body{
-            background: url("{% static 'images/background.jpg' %}");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            background-attachment: fixed;
-            font-family: "Inter", sans-serif;
-        }
       
         #content2 {
             position: static;

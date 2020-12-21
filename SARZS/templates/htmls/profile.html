@@ -25,7 +25,8 @@
         <div class="user_details">
             <b>User ID:</b> {{ user }} <br>
             <b>User Email address:</b> {{ user.email }} <br>
-            <a href="{% url 'profileUpdate' %}">Update Profile</a>
+            <a href="{% url 'profileUpdate' %}">Update Profile</a> <br>
+            <a href="{% url 'password_change' %}">Change Password</a>
         </div>
 
     </div>

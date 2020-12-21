@@ -4,6 +4,7 @@ from django.conf.urls import url
 from SARZS.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -49,5 +50,24 @@ urlpatterns = [
     url(r'^records/$', records, name='records'),
     url(r'^profile/$', profile, name='profile'),
     url(r'^profileUpdate/$', profileUpdate, name='profileUpdate'),
+
+    path('reset_password/',
+     auth_views.PasswordResetView.as_view(template_name="htmls/password_reset.html"),
+     name="reset_password"),
+
+    path('reset_password_sent/',
+        auth_views.PasswordResetDoneView.as_view(template_name="htmls/password_reset_sent.html"),
+        name="password_reset_done"),
+
+    path('reset/<uidb64>/<token>/',
+     auth_views.PasswordResetConfirmView.as_view(template_name="htmls/password_reset_form.html"),
+     name="password_reset_confirm"),
+
+    path('reset_password_complete/',
+        auth_views.PasswordResetCompleteView.as_view(template_name="htmls/password_reset_done.html"),
+        name="password_reset_complete"),
     
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    path('password_change/', auth_views.PasswordChangeView.as_view(template_name="htmls/change_password.html"), name='password_change'),
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name="htmls/password_change_done.html"), name='password_change_done'),
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
